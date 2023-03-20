@@ -1,0 +1,274 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  font-family: "Metro Sans";
+}
+
+@font-face {
+  font-family: "Metro Sans";
+  src: url("metro-sans-medium.otf");
+}
+
+body {
+  color: rgba(102, 102, 102, 1);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+a {
+  color: rgba(22, 158, 230, 1);
+  text-decoration: none;
+  background-color: transparent;
+}
+/* 상단 공백 칸 */
+.container-divider {
+  border-top: 1px solid #feeb83;
+  margin-bottom: 20px;
+}
+
+/* 글 쓰기 페이지 */
+.container {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+/* 경로 */
+.sub-nav {
+  margin-bottom: 30px;
+  min-height: 50px;
+  padding-bottom: 15px;
+}
+
+.page-order {
+  /* margin: 0; */
+  margin: 0 0 15px 0;
+  padding: 0;
+  font-weight: 400;
+  color: #666666;
+}
+
+ol {
+  display: block;
+  list-style-type: decimal;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+}
+
+.page-order li {
+  display: inline;
+  font-weight: 700;
+  font-size: 13px;
+  max-width: 450px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #666666;
+}
+
+.page-order li + li::before {
+  content: ">";
+  margin: 0 4px;
+}
+
+/* 글 쓰기 타이틀 */
+h1 {
+  display: block;
+  font-size: 32px;
+  font-weight: bold;
+  margin-top: 0;
+  margin: 0.67em 0;
+}
+
+.page-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #333333;
+}
+
+/* 중요글 */
+.caution {
+  margin-bottom: 10px;
+  font-weight: 400;
+  font-size: 13px;
+  color: #666666;
+}
+
+/* 글 쓰기 폼 */
+.form {
+  max-width: 650px;
+  display: block;
+  margin-top: 0em;
+}
+
+input {
+  color: #3333;
+  font-size: 14px;
+  font-weight: 300;
+  max-width: 100%;
+  box-sizing: border-box;
+  outline: none;
+  line-height: normal;
+  transition: border 0.12s ease-in-out;
+}
+
+.form-title{
+  margin: 10px 0 10px 0;
+}
+
+/* 글 제목 */
+.write-title label {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+
+label {
+  cursor: default;
+}
+
+.write-title > label::after {
+  content: "*";
+  color: #f00;
+  margin-left: 2px;
+}
+
+.write-title input[type="text"] {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.write-title input {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10px;
+  width: 100%;
+  color: #333333;
+  font-weight: 400;
+  margin: 15px 0 15px 0;
+}
+/* 글 내용 */
+.write-content label {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+
+.write-content > label::after {
+  content: "*";
+  color: #f00;
+  margin-left: 2px;
+}
+
+.write-content input[type="text"] {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.write-content input {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10px;
+  width: 100%;
+  height: 200px;
+  color: #333333;
+  font-weight: 400;
+  margin: 15px 0 15px 0;
+}
+
+/* 첨부 파일 */
+.upload-drop {
+  border: 1px solid #ddd;
+  font-size: 12px;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  background-color: white;
+  height: 50px;
+}
+
+.upload-drop input[type="file"] {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+}
+
+.upload-drop span {
+  color: #999;
+  display: inline-block;
+  line-height: 24px;
+  padding: 10px;
+}
+/* 포인트 걸기 */
+.point-deal label {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 5px;
+  margin-top: 15px;
+}
+
+.point-deal > label::after {
+  content: "*";
+  color: #f00;
+  margin-left: 2px;
+}
+
+.point-deal input[type="text"] {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.point-deal input {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10px;
+  width: 20%;
+  text-align: right;
+  color: #333333;
+  font-weight: 400;
+  margin: 15px 0 15px 0;
+}
+
+.point-deal p {
+  font-size: 10px;
+  color: #f00;
+  margin-bottom: 5px;
+}
+
+/* 등록 버튼 */
+.form footer {
+  margin-top: 10px;
+  padding-top: 30px;
+}
+
+input[type="submit"] {
+  background-color: rgba(255, 212, 0, 1);
+  border: 0;
+  border-radius: 4px;
+  color: #333333;
+  font-size: 14px;
+  font-weight: 400;
+  min-width: 240px;
+  padding: 10px 50px 10px 50px;
+  width: 30%;
+  cursor: pointer;
+}
+
+/* 카테고리 */
+.category-radio {
+  display: flex;
+  margin: 10px 10px 10px 0;
+}
+
+.category-radio div {
+  margin: 5px;
+}

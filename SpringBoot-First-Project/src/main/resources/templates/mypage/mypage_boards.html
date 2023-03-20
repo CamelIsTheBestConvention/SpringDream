@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>마이페이지</title>
+    <link rel='stylesheet' type='text/css' media='screen' th:href='@{/css/fix/header.css}'>
+    <link rel='stylesheet' type='text/css' media='screen' th:href='@{/css/fix/footer.css}'>
+    <link rel='stylesheet' type='text/css' th:href="@{/css/mypage/mypage.css}">
+    <link rel="stylesheet" th:href="@{/webfonts/metro-sans-medium.otf}">
+
+    <link rel="stylesheet" th:href="@{/css/mypage/my_info.css}">
+    <link rel="stylesheet" th:href="@{/css/mypage/my_boards.css}">
+</head>
+<body>
+    <header th:replace="/fix/header.html::.header"></header>
+    <main>
+        <div class="main-view">
+            <div class="view">
+                <!-- 사이드바 -->
+                <div class="side-menu-wrapper">
+                    <div class="user-profile">
+                        <div class="profile-img">
+                            <img th:src='@{/img/member/user_profile01.png}' alt="">
+                        </div>
+                        <div class="username-wrapper">
+                            <a href="">
+                                테스트 유저네임1
+                            </a>
+                        </div>
+                        <div class="logout">
+                            <button>로그아웃</button>
+                        </div>
+                    </div>
+                    <div class="menus">
+                        <div class="menus-title">
+                            마이페이지
+                        </div>
+                        <div class="guideline"></div>
+                        <div class="menu-list-wrapper">
+                            <ul class="menu-list">
+                                <li>
+                                    <div class="menu-label">
+                                        <a th:href="@{/member/myinfo}" id="myInfo">내 정보 수정</a>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="menu-list">
+                                <li>
+                                    <div class="menu-label">
+                                        <a th:href="@{/member/myboard}" id="myBoards">나의 글 목록</a>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="menu-list">
+                                <li>
+                                    <div class="menu-label">
+                                        <a th:href="@{/member/myreply}" id="myReplies">나의 답글 목록</a>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="menu-list">
+                                <li>
+                                    <div class="menu-label">
+                                        <a th:href="@{/member/mypoints}" id="myPoints">내 포인트</a>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="menu-list">
+                                <li>
+                                    <div class="menu-label">
+                                        <a th:href="@{/member/mycash}" id="myCash">충전내역 확인</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="view-stage" th:object="${memberVO}">
+                    <div class="myInfo-main">
+                        <div class="userId" th:text="*{memberNickname}"></div>
+                        <div class="userRank">
+                            <div th:if="*{memberRank} == 1">유저 등급 : 1등급</div>
+                        </div>
+                    </div>
+                    <!-- 게시글 리스트 -->
+                    <main class="grow-1">
+                        <section class="section-1 con-min-width">
+                            <div class="con">
+                                <div class="article-list">
+                                    <header class="">
+                                        <h1 style="margin-bottom: 20px;">나의 글 목록</h1>
+                                        <div>
+                                            <div class="boardId">번호</div>
+                                            <div class="boardDate">날짜</div>
+                                            <div class="boardTitle" style="font-weight: normal;">
+                                                <span>제목</span>
+                                            </div>
+                                        </div>
+                                    </header>
+                                    <main class="">
+                                        <th:block th:each="board:${boards}">
+                                            <div th:object="${board}">
+                                                <div id="boardId" class="boardId" th:text="*{boardNumber}"></div>
+                                                <div id="boardDate" class="boardDate" th:text="*{boardUpdateDate}"></div>
+                                                <div id="boardTitle" class="boardTitle">
+                                                    <a th:href="@{/board/page(boardNumber=*{boardNumber})}"
+                                                       th:text="*{boardTitle}">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </th:block>
+                                    </main>
+                                </div>
+                            </div>
+                        </section>
+                    </main>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer th:replace="/fix/footer.html :: .footer"></footer>
+</body>
+<script type="text/javascript" th:src="@{/js/mypage/mypage.js}"></script>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script type="text/javascript">
+    let headerInput = document.querySelector(".css-input");
+    let inputWrapper = document.querySelector("#inputWrapper");
+
+    $('.header').load('../header_footer/header.html');
+
+    headerInput.addEventListener('focus', function(){
+        inputWrapper.style.width = '90%';
+        inputWrapper.style.borderColor = '#2e2e2e';
+    });
+
+    headerInput.addEventListener('focusout', function(){
+        inputWrapper.style.width = '65%';
+        inputWrapper.style.borderColor = 'transparent';
+    });
+</script>
+<script type="text/javascript" th:src="@{/js/main/main-banner-transition.js}"></script>
+<script type="text/javascript" th:src="@{/js/main/main-banner-typingEffect.js}"></script>
+<script type="text/javascript" th:src="@{/js/fix/header.js}"></script>
+</html>

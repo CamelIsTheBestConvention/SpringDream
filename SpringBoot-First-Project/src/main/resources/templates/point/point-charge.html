@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>포인트 충전</title>
+    <link rel='stylesheet' type='text/css' media='screen' th:href='@{/css/fix/header.css}'>
+    <link rel='stylesheet' type='text/css' media='screen' th:href='@{/css/fix/footer.css}'>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/point/point.css}">
+</head>
+<body>
+    <!-- 헤더 추가 필요 -->
+    <div th:insert="/fix/header :: header" class="header"></div>
+    <!-- 포인트 충전 페이지 -->
+    <div class="point-charge">
+        <form class="flex margin-top-60">
+            <div class="content-wrapper">
+                <section class="point-charge-select-card">
+                    <div class="point-charge-select-card-main-title">포인트 충전</div>
+                    <div class="select-card-options-box">
+                        <form action="" method="post">
+                            <div class="point-price-select-box">
+                                <!-- 충전 img -->
+                                <img th:src="@{/img/point/charge-icon.png}" class="charge-icon" style="width: 150px; height:160px">
+                                <div class="options-main">
+                                    <p class="select-card-options-label">충전 포인트</p>
+                                    <div class="description-box">
+                                        <p class="select-card-options-description">충전 금액을 선택하세요</p>
+                                    </div>
+
+                                    <div class="charge-option-button-list">
+                                        <div class="charge-option-button">
+                                            <label for="" class="charge-option-button-inner" id="money1000">
+                                                <input type="radio" name="charge-amount" class="hide money" value="1000">
+                                                <span class="radio-body hide"></span>
+                                                <div class="radio-text">
+                                                    <span>+1000원</span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div class="charge-option-button">
+                                            <label for="" class="charge-option-button-inner" id="money2000">
+                                                <input type="radio" name="charge-amount" class="hide money" value="2000">
+                                                <span class="radio-body hide"></span>
+                                                <div class="radio-text">
+                                                    <span>+2000원</span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div class="charge-option-button">
+                                            <label for="" class="charge-option-button-inner" id="money5000">
+                                                <input type="radio" name="charge-amount" class="hide money" value="5000">
+                                                <span class="radio-body hide"></span>
+                                                <div class="radio-text">
+                                                    <span>+5000원</span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div class="charge-option-button">
+                                            <label for="" class="charge-option-button-inner"id="money10000">
+                                                <input type="radio" name="charge-amount" class="hide money" value="10000">
+                                                <span class="radio-body hide"></span>
+                                                <div class="radio-text">
+                                                    <span>+10000원</span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+<!--                        <div class="payment-options-select-box">-->
+<!--                            <div class="options-main">-->
+<!--                                <p class="select-card-options-label margin-bottom-10">결제 수단</p>-->
+<!--                                <ul class="payment-radio-button">-->
+<!--                                    <li>-->
+<!--                                        <div class="radio">-->
+<!--                                            <label class="radio-label">-->
+<!--                                                <input type="radio" name="payment-option" value="신용카드">-->
+<!--                                                <span class="radio-body"></span>-->
+<!--                                                <div class="radio-text">-->
+<!--                                                    <span class="select-card-options-label">신용카드</span>-->
+<!--                                                </div>-->
+<!--                                            </label>-->
+<!--                                        </div>-->
+<!--                                    </li>-->
+<!--                                    <li>-->
+<!--                                        <div class="radio">-->
+<!--                                            <label class="radio-label">-->
+<!--                                                <input type="radio" name="payment-option" value="실시간 계좌이체">-->
+<!--                                                <span class="radio-body"></span>-->
+<!--                                                <div class="radio-text">-->
+<!--                                                    <span class="select-card-options-label">실시간 계좌이체</span>-->
+<!--                                                </div>-->
+<!--                                            </label>-->
+<!--                                        </div>-->
+<!--                                    </li>-->
+<!--                                    <li>-->
+<!--                                        <div class="radio">-->
+<!--                                            <label class="radio-label">-->
+<!--                                                <input type="radio" name="payment-option" value="무통장입금">-->
+<!--                                                <span class="radio-body"></span>-->
+<!--                                                <div class="radio-text">-->
+<!--                                                    <span class="select-card-options-label">무통장입금</span>-->
+<!--                                                </div>-->
+<!--                                            </label>-->
+<!--                                        </div>-->
+<!--                                    </li>-->
+<!--                                </ul>-->
+                                <div class="charge-button-container">
+                                    <div class="charge-button">
+                                        <button type="button" disabled="disabled" class="btn btn-yellow" onclick="requestPay('${c.ctitle}')">
+                                            <span style="font-size: 15px;">포인트 충전하기</span>
+                                        </button>
+                                        <!-- <button class="btn btn-yellow">
+                                            <span style="font-size: 15px;">충전하기</span>
+                                        </button> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="point-charge-description-box">
+                    <h4 class="description-title">
+                        <!-- 체크 이미지 추가 -->
+                        <img th:src="@{/img/point/checked-black.svg}" alt="check-mark" style="margin-right: 5px;">
+                        <span>이용 상세 안내</span>
+                    </h4>
+                    <ul class="description-list">
+                        <li>충전 비율은 1000원 : 1000p 입니다!</li>
+                        <li>충전은 필요한 만큼만!!</li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- 푸터 추가 필요 -->
+    <footer th:replace="/fix/footer.html::.footer"></footer>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script type="text/javascript" th:src="@{/js/fix/header.js}"></script>
+<script type="text/javascript" th:src="@{/js/point/point.js}"></script>
+<!-- iamport.payment.js == 아임포트 결제모듈 연동 역할 -->
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+<script>
+    var IMP = window.IMP;  // 팝업창
+    /* IMP.init("imp67011510"); */
+    IMP.init("imp25368861");// 아임포트 가맹점 식별코드
+
+    var today = new Date(); //일
+    var hours = today.getHours(); // 시
+    var minutes = today.getMinutes();  // 분
+    var seconds = today.getSeconds();  // 초
+    var milliseconds = today.getMilliseconds(); //밀리초
+    var buyPoint = hours +  minutes + seconds + milliseconds;
+    // 충전 값
+    var $money = 0;
+    // 구매자 이름
+    // var memberName = $('');
+    // 구매자 폰번호
+    // var memberMobile = $('');
+
+    let moneyAmount = 0;
+
+    $('#money1000').click(function () {
+        $money = $('#money1000 input:first-child').val();
+    });
+    $('#money2000').click(function () {
+        $money = $('#money2000 input:first-child').val();
+    });
+    $('#money5000').click(function () {
+        $money = $('#money5000 input:first-child').val();
+    });
+    $('#money10000').click(function () {
+        $money = $('#money10000 input:first-child').val();
+    });
+
+    function requestPay(itemName) { //인자 값으로 컨트롤러로부터 받아온 차량명 데이터를 삽입하였다.
+        console.log(itemName);
+        IMP.request_pay({ //요청하는 것들
+            pg : 'kakaopay', //카카오페이 API래핑
+            /*                 'kakao':카카오페이,
+        html5_inicis':이니시스(웹표준결제)
+        'nice':나이스페이
+        'jtnet':제이티넷
+        'uplus':LG유플러스
+        'danal':다날
+        'payco':페이코
+        'syrup':시럽페이
+        'paypal':페이팔
+         */
+            /* pay_method : 'card', */
+            /*
+            'samsung':삼성페이,
+            'card':신용카드,
+            'trans':실시간계좌이체,
+            'vbank':가상계좌,
+            'phone':휴대폰소액결제
+             */
+            merchant_uid: "IMP"+buyPoint,  // 상점에서관리하는 상품번호
+            name : '강민구', //상품명
+            amount : $money, //가격
+            // buyer_email : 'Iamport@chai.finance', //구매자 이메일
+            buyer_name : '강민구', //구매자 이름
+            buyer_tel : '010-1234-5678', //구매자 번호
+            buyer_addr : '서울특별시 강남구 역삼동 코리아It아카데미', //구매자 주소
+            buyer_postcode : '06236',
+            // m_redirect_url : 'https://www.yourdomain.com/payments/complete',
+        }, function (rsp) { // callback
+            if (rsp.success) {
+                console.log(rsp);
+                var msg = '결제가 완료되었습니다.\n';
+                msg += '거래 페이지 : springDream' +"\n";
+                msg += '결제 금액 : ' + $money +'원\n';
+                msg += '카드 승인번호 : ' + 3944 + '****' + 24 + '**';
+
+                alert($money + "포인트가 충전되었습니다.");
+                $.ajax({
+                    url : "/member/payment",
+                    type : "POST",
+                    data : {amount: $money},
+                    dataType : 'json',
+                    success : function(data){
+                        window.location.replace("/main/index");
+                    },
+                    // error : function(){
+                    //     alert("결제 실패");
+                    // }
+                })
+            } else {
+                console.log(rsp);
+                var msg = '결제에 실패하였습니다.\n';
+                msg += '에러내용 : ' + rsp.error_msg;
+            }
+            alert(msg);
+        });
+    }
+</script>
+</html>

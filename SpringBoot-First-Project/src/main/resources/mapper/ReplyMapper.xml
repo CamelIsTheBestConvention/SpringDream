@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper  namespace="com.springdream.app.mapper.ReplyMapper">
+    <!--  댓글 추가  -->
+    <insert id="insert">
+        INSERT INTO TBL_DREAM_REPLY(REPLY_NUMBER, REPLY_TITLE, REPLY_CONTENT, BOARD_NUMBER, MEMBER_NUMBER)
+        VALUES(SEQ_DREAM_REPLY.NEXTVAL, #{replyTitle}, #{replyContent}, #{boardNumber}, #{memberNumber})
+    </insert>
+
+    <!--  댓글 수정  -->
+    <update id="update" parameterType="replyDTO">
+        UPDATE TBL_DREAM_REPLY
+        SET REPLY_TITLE = #{replyTitle}, REPLY_CONTENT = #{replyContent}, REPLY_UPDATE_DATE = SYSDATE
+        WHERE REPLY_NUMBER = #{replyNumber}
+    </update>
+
+    <!--  댓글 삭제  -->
+    <delete id="delete">
+        DELETE FROM TBL_DREAM_REPLY
+        WHERE REPLY_NUMBER = #{replyNumber}
+    </delete>
+
+    <!--  댓글 조회  -->
+    <select id="select" resultType="replyDTO">
+        SELECT R.REPLY_NUMBER, R.REPLY_TITLE, R.REPLY_CONTENT, R.REPLY_UPDATE_DATE,
+        R.MEMBER_NUMBER, R.BOARD_NUMBER, m.MEMBER_ID, m.MEMBER_NAME, m.MEMBER_RANK
+        FROM TBL_DREAM_REPLY R
+        INNER JOIN TBL_DREAM_MEMBER m
+        ON R.REPlY_NUMBER = #{replyNumber} AND R.MEMBER_NUMBER = m.MEMBER_NUMBER
+    </select>
+
+    <!--  댓글 전체 조회  -->
+    <select id="selectAll" resultType="replyDTO">
+        SELECT D2.REPLY_NUMBER, D2.REPLY_TITLE, D2.REPLY_CONTENT, D2.REPLY_UPDATE_DATE, D2.MEMBER_NUMBER, D2.BOARD_NUMBER, m2.MEMBER_ID, m2.MEMBER_NAME, m2.MEMBER_RANK
+        FROM
+        (
+            SELECT ROWNUM R, D1.REPLY_NUMBER, D1.REPLY_TITLE, D1.REPLY_CONTENT, D1.REPLY_UPDATE_DATE, D1.MEMBER_NUMBER, D1.BOARD_NUMBER, m1.MEMBER_ID, m1.MEMBER_NAME, m1.MEMBER_RANK
+            FROM
+            (
+                SELECT R.REPLY_NUMBER, R.REPLY_TITLE, R.REPLY_CONTENT, R.REPLY_UPDATE_DATE, R.MEMBER_NUMBER, R.BOARD_NUMBER, m.MEMBER_ID, m.MEMBER_NAME, m.MEMBER_RANK
+                FROM TBL_DREAM_REPLY R
+                INNER JOIN TBL_DREAM_MEMBER m
+                ON R.MEMBER_NUMBER = m.MEMBER_NUMBER
+                ORDER BY REPLY_UPDATE_DATE DESC
+            ) D1
+            JOIN TBL_DREAM_MEMBER m1
+            ON D1.MEMBER_NUMBER = m1.MEMBER_NUMBER
+            WHERE ROWNUM <![CDATA[<]]> 6
+        ) D2
+        JOIN TBL_DREAM_MEMBER m2
+        ON D2.MEMBER_NUMBER = m2.MEMBER_NUMBER
+        WHERE R <![CDATA[>]]> 0
+    </select>
+
+    <!--  마이페이지 회원 댓글 전체 조회  -->
+    <select id="selectMemberReplyAll" resultType="replyDTO">
+        SELECT R.REPLY_NUMBER, R.REPLY_TITLE, R.REPLY_CONTENT, R.REPLY_UPDATE_DATE,
+        R.MEMBER_NUMBER, R.BOARD_NUMBER, m.MEMBER_ID, m.MEMBER_NAME, m.MEMBER_RANK
+        FROM TBL_DREAM_REPLY R
+        INNER JOIN TBL_DREAM_MEMBER m
+        ON R.MEMBER_NUMBER = #{memberNumber} AND R.MEMBER_NUMBER = m.MEMBER_NUMBER
+    </select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

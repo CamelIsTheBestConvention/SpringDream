@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시판</title>
+    <link rel="stylesheet" type="text/css" href="/css/fix/header.css">
+    <link rel="stylesheet" type="text/css" href="/css/fix/footer.css">
+    <link rel="stylesheet" type='text/css' th:href="@{/css/board/boardMain.css}">
+</head>
+<style>
+    a {
+        text-decoration: none;
+        color: black;
+        cursor: pointer;
+    }
+
+    button {
+        border: none;
+    }
+</style>
+<body>
+    <!-- 헤더 -->
+    <div th:insert="~{/fix/header :: header}"></div>
+    <!-- 메인 -->
+    <main>
+        <!-- 배너 -->
+        <section class="main-banner">
+            <div class="banner">
+                <h1 class="banner-text"> 내가 모르는 것을
+                    <br>
+                    <span>질문해보세요!</span>
+                </h1>
+                <div>
+                    <span class="banner-img">
+                        <img th:src="@{/img/board/file_icon.png}" alt="">
+                    </span>
+                </div>
+            </div>
+        </section>
+        <section class="main-body">
+            <!-- 카테고리 -->
+            <div class="main-category">
+                <div class="category-list">
+                    <button type="button" class="recent">최신글</button>
+                </div>
+                <div class="category-list">
+                    <button type="button" class="interest">인기글</button>
+                </div>
+                <div class="category-list">
+                    <button type="button" class="category" value="국어">국어</button>
+                </div>
+                <div class="category-list">
+                    <button type="button" class="category" value="수학">수학</button>
+                </div>
+                <div class="category-list selected">
+                    <button type="button" class="category" value="영어">영어</button>
+                </div>
+                <div class="category-list">
+                    <button type="button" class="category" value="사탐">사탐</button>
+                </div>
+                <div class="category-list">
+                    <button type="button" class="category" value="과탐">과탐</button>
+                </div>
+                <div class="category-list">
+                    <button type="button" class="category" value="한국사">한국사</button>
+                </div>
+                <div class="category-list">
+                    <button type="button" class="category" value="제2외국어">제2외국어</button>
+                </div>
+            </div>
+            <!-- 메인 헤더 -->
+            <div class="main-header">
+                <div class="main-header-content">
+                    총 *건
+                </div>
+            </div>
+
+            <!-- 글 리스트 -->
+            <section class="article-list" >
+                <th:block th:each="english:${english}">
+                    <!-- 글 -->
+                    <article class="article" th:object="${english}">
+                        <!-- 이미지 -->
+                        <span class="article-img">
+                            <img th:src="@{/img/board/test1.png}" alt="">
+                        </span>
+                        <!-- 글 정보 -->
+                        <div class="article-main">
+                            <a th:href="@{/board/page(boardNumber=*{boardNumber})}">
+                                <h2 class="article-title" th:text="*{boardTitle}"></h2> <!-- 글 제목 -->
+                            </a>
+                            <div class="article-contents" th:text="*{boardContent}"></div>
+                            <!-- 글 내용 -->
+                            <div class="article-category">
+                                <div class="category">
+                                    <div class="selected-category" th:text="*{boardCategory}"></div>  <!-- 선택된 카테고리 -->
+                                    <div class="selected-category" th:text="*{boardReward} + 'p'"></div>
+                                    <div class="selected-category" th:text="'조회수 : ' + *{boardViewcount}"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 글 작성자 정보 -->
+                        <div class="article-user-info">
+                            <div class="user-info">
+                                <div class="info">
+                                    <img th:src="@{/img/board/user_info_icon.png}" alt="" class="info-img">
+                                    <p class="info-text" th:text="*{memberName}"></p>   <!-- 유저네임 -->
+                                </div>
+                            </div>
+                            <div class="user-info">
+                                <div class="info">
+                                    <img th:src="@{/img/board/reward_icon.png}" alt="" class="info-img">
+                                    <p class="info-text" th:text="*{memberRank}"></p> <!-- 유저등급 -->
+                                </div>
+                            </div>
+                            <div class="user-info">
+                                <div class="info">
+                                    <img th:src="@{/img/board/date_icon.png}" alt="" class="info-img">
+                                    <p class="info-text" th:text="*{boardUpdateDate}"></p>    <!-- 게시글 날짜 -->
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </th:block>
+
+                <!-- 메인 푸터 -->
+                <div class="main-footer">
+                    <ul class="page-list">
+                        <li class="page">
+                            <button class="page-button">
+                                <span class="page-num"> < </span>
+                            </button>
+                        </li>
+                        <li class="page">
+                            <button class="page-button selected">
+                                <span class="page-num"> 1 </span>
+                            </button>
+                        </li>
+                        <li class="page">
+                            <button class="page-button">
+                                <span class="page-num"> 2 </span>
+                            </button>
+                        </li>
+                        <li class="page">
+                            <button class="page-button">
+                                <span class="page-num"> 3 </span>
+                            </button>
+                        </li>
+                        <li class="page">
+                            <button class="page-button">
+                                <span class="page-num"> > </span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </section>
+    </main>
+    <!-- 푸터 -->
+    <div th:insert="~{/fix/footer :: footer}"></div>
+</body>
+<script th:src="@{/js/fix/header.js}"></script>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script>
+
+    // 인기글
+    $("button.interest").on("click", function(e){
+        e.preventDefault();
+        location.href = "/board/popular";
+    });
+
+    // 최신글
+    $("button.recent").on("click", function(e){
+        e.preventDefault();
+        location.href = "/board/recent";
+    });
+
+    // 카테고리
+    $("button.category").on("click", function (e) {
+        e.preventDefault();
+            var kind = $(this).val();       //버튼이 클릭 되었을 시, 개별 버튼의 값이 kind 변수에 담겨집니다.
+            $.ajax({
+                async : false,
+                url : "/board/category",
+                type : "post",
+                data : {
+                    // id : $(this).val(),
+                    "kind":kind    // 버튼의 value값에 따라 작동합니다.
+                },
+                dataType : "charset='UTF-8'",
+                success : function(data){
+                    console.log(data);
+                    $('body').html(data);
+                },
+                error : function(data){
+                    alert('error');
+                }
+            })
+    })
+
+</script>
+</html>

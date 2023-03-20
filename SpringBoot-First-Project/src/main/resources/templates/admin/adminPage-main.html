@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/customer-service.png}" />
+  <link rel="stylesheet" th:href="@{/css/admin/adminPage-main.css}" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&family=Noto+Sans+KR&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" th:href="@{/css/admin/adminPage.css}">
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+  <title>SpringDream AdminPage</title>
+</head>
+
+<body>
+
+  <div class="body-wrap" style="min-width: 754px;">
+    <!-- 좌측메뉴 시작 -->
+    <div th:insert="~{/admin/adminPage-sider :: sider}"></div>
+    <div class="dummy"></div>
+
+    <div class="content-wrap">
+
+      <!-- 컨텐츠 주제 -->
+      
+      <div class="columns is-flex">
+        <div class="content-name column is-left ml-6 pt-0 mb-0 mt-5 pb-0" >
+          <img class="mt-2" src="/img/admin/settings.png" />
+          <h3 class="mt-2">SpringDream 관리자 홈</h3>
+        </div>
+
+        <!-- 프로필 사진 로그아웃 -->
+        <div class="content-header-profile column is-right is-one-quarter-desktop mr-6 mt-3">
+          <div class="profile-box pointer">
+            <img src="/img/admin/bukbuk.png" />
+            <span>벅벅코딩</span>
+          </div>
+          <button class="logout pointer">Logout</button>
+        </div>
+      </div>
+      <!--   헤더   -->
+      <div th:insert="~{/admin/adminPage-header :: header}">헤더</div>
+
+
+      <!-- 컨텐츠 시작 -->
+      <div class="content-body container" style="margin: 0 auto; max-width: 975px;">
+        <div class="item-list">
+          <div class="item content-click pointer">
+            <h3>신규 회원</h3>
+            <div class="new-user" id="up-slide">
+              <div class="user-list1" th:each="member:${newMembers}">
+                <div class="user-list" th:object="${member}">
+                  <img src="/img/admin/user.png"/>
+                  <div class="user-info">
+                    <span th:text="*{memberName}">문성준</span><br>
+                    <p style="display: inline-block">총 게시글 수 : </p>
+                    <p style="display: inline-block" th:text="*{memberBoardCount}"></p>
+                  </div>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script src="/js/admin/admin-main.js"></script>
+<!--<script th:src="@{/js/admin/adminPage-main.js}"></script>-->
+<!--<script>-->
+<!--  setInterval(function () {-->
+<!--    $("#up-slide > .user-list1").delay(2000);-->
+<!--    $("#up-slide > .user-list1").animate({ marginTop: "-52px" });-->
+<!--    $("#up-slide > .user-list1").delay(2000);-->
+<!--    $("#up-slide > .user-list1").animate({ marginTop: "-104px" });-->
+<!--    $("#up-slide > .user-list1").delay(2000);-->
+<!--    $("#up-slide > .user-list1").animate({ marginTop: "-156px" });-->
+<!--    $("#up-slide > .user-list1").delay(2000);-->
+<!--    $("#up-slide > .user-list1").animate({ marginTop: "-208px" });-->
+<!--    $("#up-slide > .user-list1").delay(2000);-->
+<!--    $("#up-slide > .user-list1").animate({ marginTop: "-260px" });-->
+<!--    $("#up-slide > .user-list1").delay(2000);-->
+<!--    $("#up-slide > .user-list1").animate({ marginTop: "-312px" });-->
+<!--    $("#up-slide > .user-list1").delay(2000);-->
+<!--    $("#up-slide > .user-list1").animate({ marginTop: "-364px" });-->
+<!--    $("#up-slide > .user-list1").delay(2000);-->
+<!--    $("#up-slide > .user-list1").animate({ marginTop: "0px" });-->
+
+<!--  });-->
+<!--</script>-->
+
+</html>

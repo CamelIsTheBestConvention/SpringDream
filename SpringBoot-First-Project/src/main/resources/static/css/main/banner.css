@@ -1,0 +1,59 @@
+section.container {
+    width: 540px;
+    height: 380px;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+}
+
+.banner {
+    width: 540px;
+    height: 380px;
+    /* transform: translate(-90vw); */
+}
+
+.banner div {
+    width: 540px;
+    height: 380px;
+    float: left;
+}
+
+div img {
+    width: 100%;
+}
+
+div.arrow {
+    position: absolute;
+    font-size: 3rem;
+    width: 80px;
+    height: 80px;
+    /*background-color: #0000002e;*/
+    cursor: pointer;
+    border-radius: 50%;
+    text-align: center;
+    top: 43%;
+    line-height: 72px;
+    color: gray;
+}
+
+div.next {
+    right: 80px;
+}
+
+div.prev {
+    left: 5%;
+}
+
+div.btns {
+    width: 90vw;
+    text-align: center;
+    position: absolute;
+    bottom: 10px;
+}
+
+div.btns .btn {
+    border-radius: 50%;
+    border: 2px solid black;
+    width: 15px;
+    height: 15px;
+}

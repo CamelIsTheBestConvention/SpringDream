@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"  th:href="@{/css/member/login.css}" />
+    <link rel="stylesheet" th:href="@{/webfonts/metro-sans-medium.otf}">
+    <title>질문이 필요한 순간, SpringDream 로그인</title>
+</head>
+<body>
+<!-- 전체 창 -->
+<div class="wrapper">
+    <!-- 부분 창 -->
+    <div class="login-wrap">
+        <!-- 좌측 이미지 -->
+        <div class="login-img">
+            <div class="login-img-wrap">
+                <img src="https://kmong.com/_next/image?url=https%3A%2F%2Fd2v80xjmx68n4w.cloudfront.net%2Fassets%2Fimages%2Fdesktop%2F_login_02%403x.jpg&w=1200&q=75" alt="">
+            </div>
+            <!-- <p class="login-info">
+                <span>현재 40명의 회원이 크몽에서 활동하고 있습니다.</span>
+                <br>
+                <span class="bold">41번째</span>
+                스프링드림의 회원이 되어보세요 :)
+            </p> -->
+        </div>
+
+        <!-- 로그인 창 -->
+        <div class="login-content">
+            <h2 class="login-title">로그인</h2>
+            <!-- 로그인 폼 -->
+            <form id="login-form" method="post" class="login-form">
+                <!-- 아이디 입력 -->
+                <div class="write">
+                    <div class="write-text">
+                        <input type="text" placeholder="아이디를 입력해 주세요." name="memberId">
+                    </div>
+                </div>
+
+                <!-- 비밀번호 입력 -->
+                <div class="write">
+                    <div class="write-text">
+                        <input type="password" placeholder="비밀번호를 입력해 주세요." name="memberPw">
+                    </div>
+                </div>
+
+                <!-- 로그인 버튼 -->
+                <button type="submit"
+                        class="login-btn"
+                        id="commit-btn"
+                        name="login-button">
+                    <span>로그인</span>
+                </button>
+
+                <!-- 로그인 유지, 아이디/비밀번호 찾기 -->
+                <div class="service-text">
+                    <!-- 로그인 유지 -->
+                    <!--                    <label for="login-maintain" class="login-maintain-label">-->
+                    <!--                            <span class="login-maintain-wrap" id="login-maintain">-->
+                    <!--                                <input type="checkbox" class="login-maintain-checkbox">-->
+                    <!--                                <span class="dont-know-this"></span>-->
+                    <!--                                <span class="login-maintain-text">로그인 유지</span>-->
+                    <!--                            </span>-->
+                    <!--                    </label>-->
+                    <!-- 아이디/비밀번호 찾기 -->
+                    <div class="find-id">
+                        <a th:href="@{/member/findId}">아이디•비밀번호 찾기</a>
+                    </div>
+                </div>
+            </form>
+            <!-- 구분선 -->
+            <hr class="hr-line">
+            <!-- 회원가입 버튼 -->
+            <div class="join-btn" >
+                <p class="join-info">
+                    모르는 문제가 생기면
+                    <br>
+                    <b>스프링드림</b>
+                    으로 오세요!
+                </p>
+                <a th:href="@{/member/join}" class="join-link">
+                    <span class="join-btn">회원가입 하러 가기</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script
+        type="text/javascript"
+        src="https://code.jquery.com/jquery-3.6.1.js"
+></script>
+<script type="text/javascript" th:src="@{/js/member/join.js}"></script>
+<script>
+    $(document).ready(function () {
+        let message = "[[${loginFail}]]";
+        if (message != "") {
+            alert(message);
+        }else {
+        }
+    })
+</script>
+</html>

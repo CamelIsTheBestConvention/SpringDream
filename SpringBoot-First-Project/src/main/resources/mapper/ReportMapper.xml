@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper  namespace="com.springdream.app.mapper.ReportMapper">
+    <insert id="insert" parameterType="reportVO">
+        <selectKey keyProperty="reportNumber" order="BEFORE" resultType="long">
+            SELECT SEQ_DREAM_REPORT.NEXTVAL FROM DUAL
+        </selectKey>
+        INSERT INTO TBL_DREAM_REPORT(REPORT_NUMBER, REPORT_TITLE, REPORT_CONTENT, REPORT_TYPE, MEMBER_NUMBER, BOARD_NUMBER)
+        VALUES(#{reportNumber}, #{reportTitle}, #{reportContent}, #{reportType}, #{memberNumber}, #{boardNumber})
+    </insert>
+    <select id="select" resultType="reportVO">
+        SELECT REPORT_NUMBER, REPORT_TITLE, REPORT_CONTENT, REPORT_TYPE, REPORT_DATE, MEMBER_NUMBER, BOARD_NUMBER
+        FROM TBL_DREAM_REPORT WHERE REPORT_NUMBER = #{reportNumber}
+    </select>
+    <select id="selectAll" resultType="reportVO">
+        SELECT REPORT_NUMBER, REPORT_TITLE, REPORT_CONTENT, REPORT_TYPE, REPORT_DATE, MEMBER_NUMBER, BOARD_NUMBER
+        FROM TBL_DREAM_REPORT ORDER BY REPORT_DATE DESC
+    </select>
+    <update id="updateAdopt" parameterType="replyDTO">
+        UPDATE TLB_DREAM_REPLY
+        SET REPLY_ADOPT = #{replyAdopt}
+        WHERE REPLY_NUMBER = #{replyNumber}
+    </update>
+</mapper>

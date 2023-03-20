@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>마이페이지</title>
+    <link rel='stylesheet' type='text/css' media='screen' th:href='@{/css/fix/header.css}'>
+    <link rel='stylesheet' type='text/css' media='screen' th:href='@{/css/fix/footer.css}'>
+    <link rel='stylesheet' type='text/css' th:href="@{/css/mypage/mypage.css}">
+    <link rel="stylesheet" th:href="@{/webfonts/metro-sans-medium.otf}">
+
+    <link rel="stylesheet" th:href="@{/css/mypage/my_info.css}">
+</head>
+<body>
+<div th:insert="/fix/header :: header" class="header"></div>
+<main>
+    <div class="main-view">
+        <div class="view">
+            <!-- 사이드바 -->
+            <div class="side-menu-wrapper">
+                <div class="user-profile">
+                    <div class="profile-img">
+                        <img th:src='@{/img/member/user_profile01.png}' alt="">
+                    </div>
+                    <div class="username-wrapper" th:text="${memberVO.memberId}"></div>
+                    <div class="logout">
+                        <button class="logout-btn" id="logout-btn" th:onclick="|location.href='@{/member/login}'|">로그아웃</button>
+                    </div>
+                </div>
+                <div class="menus">
+                    <div class="menus-title">
+                        마이페이지
+                    </div>
+                    <div class="guideline"></div>
+                    <div class="menu-list-wrapper">
+                        <ul class="menu-list">
+                            <li>
+                                <div class="menu-label">
+                                    <a th:href="@{/member/myinfo}" id="myInfo">내 정보 수정</a>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="menu-list">
+                            <li>
+                                <div class="menu-label">
+                                    <a th:href="@{/member/myboard}" id="myBoards">나의 글 목록</a>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="menu-list">
+                            <li>
+                                <div class="menu-label">
+                                    <a th:href="@{/member/myreply}" id="myReplies">나의 답글 목록</a>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="menu-list">
+                            <li>
+                                <div class="menu-label">
+                                    <a th:href="@{/member/mypoints}" id="myPoints">내 포인트</a>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="menu-list">
+                            <li>
+                                <div class="menu-label">
+                                    <a th:href="@{/member/mycash}" id="myCash">충전내역 확인</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="view-stage">
+                <form class="user-info" id="update-form" method="post" th:object="${memberVO}">
+                    <div>
+                        <div class="myInfo-main">
+                            <div class="userId" th:text="*{memberNickname}"></div>
+                            <div class="userRank">
+                                <div th:if="*{memberRank} == 1">유저 등급 : 1등급</div>
+                            </div>
+                            <div class="changeprofile">
+                                <button
+                                        type="submit"
+                                        class="update-btn"
+                                        id="commit-btn"
+                                        name="join-button">프로필 수정
+                                </button>
+                            </div>
+                        </div>
+                        <div class="infos">
+                            <span>아이디</span>
+                            <div class="input">
+                                <input type="text" th:field="*{memberId}" id="userId" placeholder="변경하실 아이디를 입력하세요.">
+                                <ul class="warnings">
+                                    <li>* 아이디는 영어, 숫자 등으로 이루어져야 합니다.</li>
+                                    <li>* 아이디는 최대 12자를 넘어갈 수 없습니다.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="infos">
+                            <span>비밀번호</span>
+                            <div class="input">
+                                <input type="password" th:field="*{memberPw}" id="userPw" placeholder="변경하실 비밀번호를 입력하세요.">
+                            </div>
+                        </div>
+                        <div class="infos">
+                            <span>닉네임</span>
+                            <div class="input">
+                                <input type="text" th:field="*{memberNickname}" id="userNickname" placeholder="변경하실 닉네임을 입력하세요.">
+                                <ul class="warnings">
+                                    <li>* 닉네임은 특수문자를 사용할 수 없습니다.</li>
+                                    <li>* 회원 약관에 위배되는 닉네임을 사용하실 경우 경고 없이 닉네임이 변경될 수 있습니다.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="infos">
+                            <span>이메일</span>
+                            <div class="input">
+                                <input type="email" th:field="*{memberEmail}" id="userEmail" placeholder="변경하실 이메일을 입력하세요.">
+                            </div>
+                        </div>
+                        <div class="infos">
+                            <span>휴대전화</span>
+                            <div class="input">
+                                <input type="text" th:field="*{memberMobile}" id="userPhonenumber" placeholder="변경하실 휴대전화 번호를 입력하세요.">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+<footer th:replace="/fix/footer.html :: .footer"></footer>
+</body>
+<script type="text/javascript" th:src="@{/js/mypage/mypage.js}"></script>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script type="text/javascript" th:src="@{/js/fix/header.js}"></script>
+</html>
