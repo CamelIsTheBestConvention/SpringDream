@@ -7,13 +7,12 @@ import com.springdream.app.service.SubjectBoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -22,7 +21,7 @@ public class BoardController {
     private final BoardService boardService;
     private final SubjectBoardService subjectBoardService;
 
-//    게시글 목록
+    //    게시글 목록
     @GetMapping("/boardMain")
     public void main(Model model) {
 
@@ -50,18 +49,18 @@ public class BoardController {
         return new RedirectView("/board/boardMain");
     }
 
-//    게시글 상세보기
+    //    게시글 상세보기
     @GetMapping("/page")
     public String read(Long boardNumber, Model model){
-       String category = boardService.show(boardNumber).getBoardCategory();
+        String category = boardService.show(boardNumber).getBoardCategory();
         subjectBoardService.addViewCount(boardNumber);
 //       model.addAttribute("replylist", replyService.showList());
-       model.addAttribute("boardlist", boardService.categoryPost(category));
-       model.addAttribute("board", boardService.show(boardNumber));
-       return "/board/page";
+        model.addAttribute("boardlist", boardService.categoryPost(category));
+        model.addAttribute("board", boardService.show(boardNumber));
+        return "/board/page";
     }
 
-//    게시글 수정
+    //    게시글 수정
     @PostMapping("/update")
     public RedirectView update(BoardDTO boardDTO, RedirectAttributes redirectAttributes){
         boardService.modify(boardDTO);
@@ -69,7 +68,7 @@ public class BoardController {
         return new RedirectView("/board/read");
     }
 
-//    게시글 삭제
+    //    게시글 삭제
     @GetMapping("/delete")
     public RedirectView delete(Long boardNumber){
         boardService.remove(boardNumber);
@@ -92,6 +91,12 @@ public class BoardController {
     @GetMapping("/category")
     public void category(String boardCategory, Model model) {
         model.addAttribute("category", boardService.categoryPost(boardCategory));
+    }
+
+    @PostMapping("/categoryBy")
+    @ResponseBody
+    public List<BoardDTO> category(@RequestParam String boardCategory) {
+        return boardService.categoryPost(boardCategory);
     }
 
 }
