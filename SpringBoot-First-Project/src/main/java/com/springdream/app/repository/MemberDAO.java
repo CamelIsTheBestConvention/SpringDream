@@ -51,6 +51,9 @@ public class MemberDAO {
     //  아이디 중복확인
     public int checkId(String memberId) { return memberMapper.checkId(memberId);}
 
+    //  닉네임 중복확인
+    public int checkNick(String memberNickname) { return memberMapper.checkNick(memberNickname);}
+
     // 회원 게시글수 조회
     public int getBoardNum(Long memberNumber) { return memberMapper.memberBoardCount(memberNumber); }
 

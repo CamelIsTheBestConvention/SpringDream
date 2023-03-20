@@ -64,6 +64,10 @@ public class MainMemberService implements MemberService{
     @Override
     public int checkId(String memberId) {return memberDAO.checkId(memberId); }
 
+    //  닉네임 중복확인  public int checkId(String memberId);
+    @Override
+    public int checkNick(String memberNickname) {return memberDAO.checkNick(memberNickname); }
+
     //  로그인
     //  로그인 성공 시 memberNumber, 실패 시 0 출력
     @Override
