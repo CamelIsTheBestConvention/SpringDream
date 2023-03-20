@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시판</title>
+    <link rel='stylesheet' type='text/css' media='screen' th:href='@{/css/fix/header.css}'>
+    <link rel='stylesheet' type='text/css' media='screen' th:href='@{/css/fix/footer.css}'>
+    <link rel="stylesheet" type='text/css' media='screen' th:href="@{/css/fix/searchResult.css}">
+</head>
+<body>
+<!-- 헤더 -->
+<header th:replace="/fix/header.html::.header"></header>
+<!-- 메인 -->
+<main>
+    <!-- 배너 -->
+    <section class="main-banner">
+        <div class="banner">
+            <h1 class="banner-text"> 내가 모르는 것을
+                <br>
+                <span >질문해보세요!</span>
+            </h1>
+            <div>
+                <span class="banner-img">
+                    <img src="file_icon.png" alt="">
+                </span>
+            </div>
+        </div>
+    </section>
+    <section class="main-body">
+        <!-- 메인 헤더 -->
+        <div class="main-header">
+            <div class="main-header-content" th:text=" ${keyword} 검색결과 : 총 ${boardCount}건"></div>
+        </div>
+        <!-- 글 리스트 -->
+        <section class="article-list">
+            <th:block th:each="board:${boardList}">
+                <!-- 글 -->
+                <article class="article" th:object="${board}">
+                    <!-- 이미지 -->
+                    <span class="article-img">
+                            <img th:src="@{/img/board/test1.png}" alt="">
+                        </span>
+                    <!-- 글 정보 -->
+                    <div class="article-main">
+                        <a th:href="@{/board/page(boardNumber=*{boardNumber})}">
+                            <h2 class="article-title" th:text="*{boardTitle}"></h2> <!-- 글 제목 -->
+                        </a>
+                        <div class="article-contents" th:text="*{boardContent}"></div>
+                        <!-- 글 내용 -->
+                        <div class="article-category">
+                            <div class="category">
+                                <div class="selected-category" th:text="*{boardCategory}"></div>  <!-- 선택된 카테고리 -->
+                                <div class="selected-category" th:text="*{boardReward} + 'p'"></div>
+                                <div class="selected-category" th:text="'조회수 : ' + *{boardViewcount}"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 글 작성자 정보 -->
+                    <div class="article-user-info">
+                        <div class="user-info">
+                            <div class="info">
+                                <img th:src="@{/img/board/user_info_icon.png}" alt="" class="info-img">
+                                <p class="info-text" th:text="*{memberName}"></p>   <!-- 유저네임 -->
+                            </div>
+                        </div>
+                        <div class="user-info">
+                            <div class="info">
+                                <img th:src="@{/img/board/reward_icon.png}" alt="" class="info-img">
+                                <p class="info-text" th:text="*{memberRank}"></p> <!-- 유저등급 -->
+                            </div>
+                        </div>
+                        <div class="user-info">
+                            <div class="info">
+                                <img th:src="@{/img/board/date_icon.png}" alt="" class="info-img">
+                                <p class="info-text" th:text="*{boardUpdateDate}"></p>    <!-- 게시글 날짜 -->
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </th:block>
+            <!-- 페이징 처리 -->
+<!--            <div th:object="${pagination}">-->
+<!--                <div style="text-align: center">-->
+<!--                    <a class="changePage" th:href="*{startPage - 1}" th:if="*{prev}"><code><</code></a>-->
+<!--                    <th:block th:each="page:${#numbers.sequence(pagination.startPage, pagination.endPage)}">-->
+<!--                        <a class="changePage" th:href="${page}" th:if="${pagination.criteria.page != page}"><code th:text="${page}"></code></a>-->
+<!--                        <code th:unless="${pagination.criteria.page != page}" th:text="${page}"></code>-->
+<!--                    </th:block>-->
+<!--                    <a class="changePage" th:href="*{endPage + 1}" th:if="*{next}"><code>></code></a>-->
+<!--                </div>-->
+<!--                <form th:action="@{/board/list}" th:object="${criteria}" name="pageForm">-->
+<!--                    <input type="hidden" th:field="*{page}">-->
+<!--                    <input type="hidden" th:field="*{amount}">-->
+<!--                </form>-->
+<!--            </div>-->
+            <div class="main-footer">
+                <ul class="page-list">
+                    <li class="page">
+                        <button class="page-button">
+                            <span class="page-num"> < </span>
+                        </button>
+                    </li>
+                    <li class="page">
+                        <button class="page-button selected">
+                            <span class="page-num"> 1 </span>
+                        </button>
+                    </li>
+                    <li class="page">
+                        <button class="page-button">
+                            <span class="page-num"> 2 </span>
+                        </button>
+                    </li>
+                    <li class="page">
+                        <button class="page-button">
+                            <span class="page-num"> 3 </span>
+                        </button>
+                    </li>
+                    <li class="page">
+                        <button class="page-button">
+                            <span class="page-num"> > </span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </section>
+</main>
+<!-- 푸터 -->
+<footer th:replace="/fix/footer.html::.footer"></footer>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+</html>

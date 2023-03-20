@@ -1,0 +1,122 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    font-family: "Nanum Gothic Coding", monospace;
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+.main{
+    width: 100%;
+}
+
+.myInfo-main{
+    border-radius: 4px;
+    background: #fafafc;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 35px;
+}
+
+.userId{
+    font-size: 25px;
+    font-weight: 700;
+    color: #303441;
+    height: 37px;
+    line-height: 37px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.userRank{
+    font-size: 12px;
+    display: flex;
+    color: #303441;
+    align-items: flex-start;
+    padding-left: 120px;
+    padding-top: 5px;
+}
+
+.changeprofile{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.changeprofile button{
+    border: 0;
+    border-radius: 6px;
+    width: 269px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: #303441;
+    font-weight: bold;
+    background: #ffd400;
+    cursor: pointer;
+}
+
+.user_info{
+    display: flex;
+    margin: 40px;
+}
+
+.infos{
+    display: flex;
+    flex-direction: column;
+    margin-top: 23px;
+    margin-left: 50px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 30px;
+}
+
+.infos span{
+    display: flex;
+    padding-left: 25px;
+    padding-top: 7;
+    padding-bottom: 7;
+    margin-bottom: 7px;
+}
+
+.input{
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 80%;
+}
+
+.input input{
+    border: 1px solid transparent;
+    outline: none;
+    border-radius: 12px;
+    padding: 5px 55px 5px 15px;
+    width: 50%;
+}
+
+.input input:focus{
+    border: 1px solid rgb(48, 52, 65, 0.5);
+    
+}
+
+.input input:hover{
+    border: 1px solid rgb(48, 52, 65, 0.5);
+}
+
+.input input:hover::placeholder{
+    color: transparent;
+}
+
+.input input:focus::placeholder{
+    color: transparent;
+}
+
+.warnings{
+    margin: 6px 0 0 0;
+    padding-left: 23px;
+    color: #9a9ba7;
+    font-size: 12px;
+}

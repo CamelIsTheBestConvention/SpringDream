@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" th:href="@{/css/admin/adminPage-userlist.css}">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 메뉴 헤더 시작 -->
+    <div th:fragment="sider" class="menu-wrap">
+        <div class="menu-header pointer">
+            <div class="menu-header-name">
+                <h3><i>Spring</i><i style="color: white">Dream</i></h3>
+            </div>
+        </div>
+        <!-- 메뉴 카테고리 시작 -->
+        <div class="menu-body">
+            <ul class="site-visit">
+                <li>
+                    <span>SpringDream</span>
+                </li>
+                <li class="pointer">
+                    <span onclick="location.href='/main/index'">사이트 바로가기</span>
+                </li>
+            </ul>
+            <ul class="category">
+                <a href="/admin/main">
+                    <li class="pointer">
+                        <span>관리자 홈</span>
+                        <!-- <img src="img/next.png" /> -->
+                    </li>
+                </a>
+                <a href="/admin/userlist">
+                    <li class="pointer">
+                        <span>회원 관리</span>
+                    </li>
+                </a>
+                <a href="/admin/boards">
+                    <li class="pointer">
+                        <span>게시글 관리</span>
+                    </li>
+                </a>
+                <a href="/admin/report">
+                    <li class="pointer">
+                        <span>신고 관리</span>
+                    </li>
+                </a>
+
+            </ul>
+        </div>
+    </div>
+
+</body>
+
+</html>

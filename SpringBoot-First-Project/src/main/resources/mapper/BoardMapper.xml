@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper  namespace="com.springdream.app.mapper.BoardMapper">
+    <!-- 게시글 추가 -->
+    <!--  keyProperty에 boardNumber를 가져와도 value값에서 똑같이 쓰는게 아니다  -->
+    <!--  작성한 VO값에 덮어씌워지고 다시 불러와 insert문의 boardNumber값에 들어간다.  -->
+    <insert id="insert">
+        <selectKey keyProperty="boardNumber" order="BEFORE" resultType="long">
+            SELECT SEQ_DREAM_BOARD.NEXTVAL FROM DUAL
+        </selectKey>
+        INSERT INTO TBL_DREAM_BOARD(BOARD_NUMBER, BOARD_CATEGORY, BOARD_TITLE, BOARD_CONTENT, BOARD_REWARD, MEMBER_NUMBER)
+        VALUES(#{boardNumber}, #{boardCategory}, #{boardTitle}, #{boardContent}, #{boardReward}, #{memberNumber})
+    </insert>
+
+    <!--  게시글 수정  -->
+    <update id="update" parameterType="boardDTO">
+        UPDATE TBL_DREAM_BOARD
+        SET BOARD_TITLE = #{boardTitle}, BOARD_CONTENT = #{boardContent}, BOARD_UPDATE_DATE = SYSDATE
+        WHERE BOARD_NUMBER = #{boardNumber}
+    </update>
+
+    <!--  게시글 조회수 증가  -->
+    <update id="addViewCount" parameterType="boardDTO">
+        UPDATE TBL_DREAM_BOARD
+        SET BOARD_VIEWCOUNT = BOARD_VIEWCOUNT + 1
+        WHERE BOARD_NUMBER = #{boardNumber}
+    </update>
+
+    <!--  게시글 삭제  -->
+    <delete id="delete">
+        DELETE FROM TBL_DREAM_BOARD
+        WHERE BOARD_NUMBER = #{boardNumber}
+    </delete>
+    <!--  조회  -->
+    <select id="select" resultType="boardDTO">
+        SELECT b.BOARD_NUMBER, b.BOARD_TITLE, b.BOARD_CONTENT, b.BOARD_REWARD, b.BOARD_CATEGORY,
+        b.BOARD_DATE, b.BOARD_UPDATE_DATE, b.BOARD_VIEWCOUNT,
+        b.BOARD_ADOPT, b.BOARD_REPORT, b.MEMBER_NUMBER, m.MEMBER_ID, m.MEMBER_NAME, m.MEMBER_RANK
+        FROM TBL_DREAM_BOARD b
+        INNER JOIN TBL_DREAM_MEMBER m
+        ON b.MEMBER_NUMBER = m.MEMBER_NUMBER
+        WHERE BOARD_NUMBER = #{boardNumber}
+    </select>
+
+    <!--  게시글 전체 조회  -->
+    <select id="selectAll" resultType="boardDTO">
+        SELECT BOARD_NUMBER, BOARD_TITLE, BOARD_CONTENT, BOARD_REWARD, BOARD_CATEGORY, BOARD_DATE, BOARD_UPDATE_DATE, BOARD_VIEWCOUNT, BOARD_ADOPT, BOARD_REPORT,
+        MEMBER_ID, MEMBER_NAME, MEMBER_RANK FROM
+        (
+            SELECT ROWNUM R, BOARD_NUMBER, BOARD_TITLE, BOARD_CONTENT, BOARD_REWARD, BOARD_CATEGORY, BOARD_DATE, BOARD_UPDATE_DATE, BOARD_VIEWCOUNT, BOARD_ADOPT, BOARD_REPORT,
+            MEMBER_ID, MEMBER_NAME, MEMBER_RANK FROM
+            (
+                SELECT b.BOARD_NUMBER, b.BOARD_TITLE, b.BOARD_CONTENT, b.BOARD_REWARD, b.BOARD_CATEGORY, b.BOARD_DATE, b.BOARD_UPDATE_DATE, b.BOARD_VIEWCOUNT, b.BOARD_ADOPT, b.BOARD_REPORT,
+       			m.MEMBER_ID, m.MEMBER_NAME, m.MEMBER_RANK
+                FROM TBL_DREAM_BOARD b
+                INNER JOIN TBL_DREAN_MEMBER m
+                ON b.MEMBER_NUMBER = m.MEMBER_NUMBER
+                ORDER BY BOARD_NUMBER DESC
+            ) D1
+            <![CDATA[
+            WHERE ROWNUM <= #{page} * #{amount}
+        ) WHERE R > (#{page} - 1) * #{amount} ]]>
+    </select>
+
+    <!--  게시글 전체 갯수 조회  -->
+    <select id="countTotal" resultType="_int">
+        SELECT COUNT(BOARD_NUMBER) FROM TBL_DREAM_BOARD
+    </select>
+
+    <!--  마이페이지 회원 게시글 전체 조회  -->
+    <select id="selectMemberAll" resultType="boardDTO">
+        SELECT b.BOARD_NUMBER, b.BOARD_TITLE, b.BOARD_CONTENT, b.BOARD_REWARD, b.BOARD_CATEGORY,
+        b.BOARD_DATE, b.BOARD_UPDATE_DATE, b.BOARD_VIEWCOUNT,
+        b.BOARD_ADOPT, b.BOARD_REPORT, b.MEMBER_NUMBER, m.MEMBER_ID, m.MEMBER_NAME, m.MEMBER_RANK
+        FROM TBL_DREAM_BOARD b
+        INNER JOIN TBL_DREAM_MEMBER m
+        ON b.MEMBER_NUMBER = #{memberNumber} AND b.MEMBER_NUMBER = m.MEMBER_NUMBER
+    </select>
+
+    <!--  신고 제외한 전체 조회  -->
+    <select id="selectUnreportAll" resultType="boardDTO">
+        SELECT b.BOARD_NUMBER, b.BOARD_TITLE, b.BOARD_CONTENT, b.BOARD_REWARD, b.BOARD_CATEGORY,
+        b.BOARD_DATE, b.BOARD_UPDATE_DATE, b.BOARD_VIEWCOUNT,
+        b.BOARD_ADOPT, b.BOARD_REPORT, b.MEMBER_NUMBER, m.MEMBER_ID, m.MEMBER_NAME, m.MEMBER_RANK
+        FROM TBL_DREAM_BOARD b
+        INNER JOIN TBL_DREAM_MEMBER m
+        ON b.MEMBER_NUMBER = m.MEMBER_NUMBER AND b.BOARD_REPORT <![CDATA[<]]> 1
+    </select>
+
+    <!--  인기글 조회  -->
+    <select id="popularBoard" resultType="boardDTO">
+        SELECT b.BOARD_NUMBER, b.BOARD_TITLE, b.BOARD_CONTENT, b.BOARD_REWARD, b.BOARD_CATEGORY,
+        b.BOARD_DATE, b.BOARD_UPDATE_DATE, b.BOARD_VIEWCOUNT,
+        b.BOARD_ADOPT, b.BOARD_REPORT, b.MEMBER_NUMBER, m.MEMBER_ID, m.MEMBER_NAME, m.MEMBER_RANK
+        FROM TBL_DREAM_BOARD b
+        INNER JOIN TBL_DREAM_MEMBER m
+        ON b.MEMBER_NUMBER = m.MEMBER_NUMBER
+        ORDER BY BOARD_VIEWCOUNT DESC
+    </select>
+
+    <!--&lt;!&ndash;    &lt;!&ndash;  최신글 조회  &ndash;&gt;&ndash;&gt;-->
+    <!--    <select id="recentBoard" resultType="boardDTO">-->
+    <!--        SELECT b.BOARD_NUMBER, b.BOARD_TITLE, b.BOARD_CONTENT, b.BOARD_REWARD, b.BOARD_CATEGORY,-->
+    <!--        b.BOARD_DATE, b.BOARD_UPDATE_DATE, b.BOARD_VIEWCOUNT,-->
+    <!--        b.BOARD_ADOPT, b.BOARD_REPORT, b.MEMBER_NUMBER, m.MEMBER_ID, m.MEMBER_NAME, m.MEMBER_RANK-->
+    <!--        FROM TBL_BOARD b-->
+    <!--        INNER JOIN TBL_MEMBER m-->
+    <!--        ON b.MEMBER_NUMBER = m.MEMBER_NUMBER-->
+    <!--        ORDER BY BOARD_UPDATE_DATE DESC-->
+    <!--    </select>-->
+
+    <!--  최신글 로우넘 정렬  -->
+    <select id="recentBoard" resultType="boardDTO">
+        SELECT D2.BOARD_NUMBER, D2.BOARD_TITLE, D2.BOARD_CONTENT, D2.BOARD_REWARD, D2.BOARD_CATEGORY,
+        D2.BOARD_DATE, D2.BOARD_UPDATE_DATE, D2.BOARD_VIEWCOUNT, D2.MEMBER_NUMBER, m2.MEMBER_ID, m2.MEMBER_NAME, m2.MEMBER_RANK
+        FROM
+        (
+            SELECT ROWNUM R, D1.BOARD_NUMBER, D1.BOARD_TITLE, D1.BOARD_CONTENT, D1.BOARD_REWARD, D1.BOARD_CATEGORY,
+            D1.BOARD_DATE, D1.BOARD_UPDATE_DATE, D1.BOARD_VIEWCOUNT, D1.MEMBER_NUMBER, m1.MEMBER_ID, m1.MEMBER_NAME, m1.MEMBER_RANK
+            FROM
+            (
+                SELECT b.BOARD_NUMBER, b.BOARD_TITLE, b.BOARD_CONTENT, b.BOARD_REWARD, b.BOARD_CATEGORY,
+                b.BOARD_DATE, b.BOARD_UPDATE_DATE, b.BOARD_VIEWCOUNT, b.MEMBER_NUMBER, m.MEMBER_ID, m.MEMBER_NAME, m.MEMBER_RANK
+                FROM TBL_DREAM_BOARD b
+                INNER JOIN TBL_DREAM_MEMBER m
+                ON b.MEMBER_NUMBER = m.MEMBER_NUMBER
+                ORDER BY BOARD_UPDATE_DATE DESC
+            ) D1
+            JOIN TBL_DREAM_MEMBER m1
+            ON D1.MEMBER_NUMBER = m1.MEMBER_NUMBER
+            WHERE ROWNUM <![CDATA[<]]> 6
+        ) D2
+        JOIN TBL_DREAM_MEMBER m2
+        ON D2.MEMBER_NUMBER = m2.MEMBER_NUMBER
+        WHERE R <![CDATA[>]]> 0
+    </select>
+
+    <!--  카테고리별 조회  -->
+    <!--  #{boardCategory}  -->
+    <select id="categoryBoard" parameterType="String" resultType="boardDTO">
+        SELECT b.BOARD_NUMBER, b.BOARD_TITLE, b.BOARD_CONTENT, b.BOARD_REWARD, b.BOARD_CATEGORY,
+        b.BOARD_DATE, b.BOARD_UPDATE_DATE, b.BOARD_VIEWCOUNT,
+        b.BOARD_ADOPT, b.BOARD_REPORT, b.MEMBER_NUMBER, m.MEMBER_ID, m.MEMBER_NAME, m.MEMBER_RANK
+        FROM TBL_DREAM_BOARD b
+        INNER JOIN TBL_DREAM_MEMBER m
+        ON b.MEMBER_NUMBER = m.MEMBER_NUMBER AND b.BOARD_CATEGORY = #{boardCategory}
+        ORDER BY BOARD_UPDATE_DATE DESC
+    </select>
+
+    <select id="selectByKeywordAll" resultType="boardDTO">
+        SELECT b.BOARD_NUMBER, b.BOARD_TITLE, b.BOARD_CONTENT, b.BOARD_REWARD, b.BOARD_CATEGORY,
+        b.BOARD_DATE, b.BOARD_UPDATE_DATE, b.BOARD_VIEWCOUNT,
+        b.BOARD_ADOPT, b.BOARD_REPORT, b.MEMBER_NUMBER, m.MEMBER_ID, m.MEMBER_NAME, m.MEMBER_RANK
+        FROM TBL_DREAM_BOARD b
+        INNER JOIN TBL_DREAM_MEMBER m
+        ON b.MEMBER_NUMBER = m.MEMBER_NUMBER
+        WHERE b.BOARD_TITLE LIKE '%'||#{keyword}||'%' OR b.BOARD_CONTENT LIKE '%'||#{keyword}||'%'
+    </select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

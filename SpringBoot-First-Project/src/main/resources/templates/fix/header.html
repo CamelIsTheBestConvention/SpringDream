@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset='utf-8'>
+    <link rel="stylesheet" th:href="@{/webfonts/metro-sans-medium.otf}">
+    <link rel="stylesheet" href="../../static/css/fix/header.css">
+</head>
+<body>
+<header th:fragment="header">
+    <div class="css-header header">
+        <div class="css-header-main">
+            <!-- 로고 -->
+            <a th:href="@{/main/index}" class="css-logo">
+                <div class="css-logo-img">
+                    <img th:src="@{/img/fix/header_logo.png}">
+                </div>
+            </a>
+            <div style="flex-grow: 1;"></div>
+            <!-- 검색바 -->
+            <form action="/main/searchResult" class="css-search" th:method="get">
+                <div class="css-input-wrapper" id="inputWrapper">
+                    <input class="css-input" id="input" name="keyword"
+                           placeholder="검색어를 입력해보세요" maxlength="15"
+                           autocomplete="off" autocorrect="off"
+                           autocapitalize="off" type="text">
+                    <div class="suffix-wrapper">
+                    <span role="img" rotate="0" class="css-aah4od e181xm9y1" style="cursor: pointer"
+                          th:onclick="|location.href='@{/main/searchResult}'|">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"
+                             focusable="false" preserveAspectRatio="xMidYMid meet" class="css-7kp13n e181xm9y0">
+                            <path xmlns="http://www.w3.org/2000/svg"
+                                  d="M11.2307008,3.5 C15.5002489,3.5 18.9614015,6.96828437 18.9614015,11.24663 C18.9614015,13.0978372 18.3133954,14.7973826 17.2322825,16.1299241 L20.2742127,19.178378 C20.5762688,19.4810023 20.5764739,19.9714482 20.2746708,20.2738195 C19.9728678,20.5761908 19.4833433,20.5759857 19.1812873,20.2733614 L19.1812873,20.2733614 L16.1426973,17.2288066 C14.8071694,18.3312107 13.0960911,18.9932599 11.2307008,18.9932599 C6.96115262,18.9932599 3.5,15.5249756 3.5,11.24663 C3.5,6.96828437 6.96115262,3.5 11.2307008,3.5 Z M11.2307008,5.04932599 C7.81506225,5.04932599 5.04614015,7.82395349 5.04614015,11.24663 C5.04614015,14.6693064 7.81506225,17.4439339 11.2307008,17.4439339 C14.6463393,17.4439339 17.4152614,14.6693064 17.4152614,11.24663 C17.4152614,7.82395349 14.6463393,5.04932599 11.2307008,5.04932599 Z">
+                            </path>
+                        </svg>
+                    </span>
+                    </div>
+                </div>
+            </form>
+            <!-- 버튼 -->
+            <div class="css-buttons">
+                <button class="css-button" id="button-payment" th:onclick="|location.href='@{/charge/point}'|">
+                    <span>결제하기</span>
+                </button>
+                <!--            <button class="css-button" id="button-mypage" th:onclick="|location.href='@{/member/myinfo}'|">-->
+                <!--                <span>마이페이지</span>-->
+                <!--            </button>-->
+                <!--            <button class="css-button" id="button-logout" th:onclick="|location.href='@{/member/logout}'|">-->
+                <!--                <span>로그아웃</span>-->
+                <!--            </button>-->
+                <div th:if="${session.memberNumber != null}">
+                    <button class="css-button" id="button-login" th:onclick="|location.href='@{/member/logout}'|">
+                        <span>로그아웃</span>
+                    </button>
+                </div>
+                <div th:if="${session.memberNumber == null}">
+                    <button class="css-button" id="button-login" th:onclick="|location.href='@{/member/login}'|">
+                        <span>로그인</span>
+                    </button>
+                </div>
+                <div th:if="${session.memberNumber == null}">
+                    <button class="css-button" id="button-join" th:onclick="|location.href='@{/member/join}'|">
+                        <span>무료 회원가입</span>
+                    </button>
+                </div>
+                <div th:if="${session.memberNumber != null}">
+                    <button class="css-button" id="button-join" th:onclick="|location.href='@{/member/myinfo}'|">
+                        <span>마이 페이지</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- 카테고리 -->
+        <div class="css-category">
+            <div class="css-category-main">
+                <!--            <div class="css-categoryAll-wrapper">-->
+                <!--                <button class="css-category-button">-->
+                <!--                    <span role="img" rotate="0">-->
+                <!--                        <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false" preserveAspectRatio="xMidYMid meet" class="css-7kp13n e181xm9y0">-->
+                <!--                            <path xmlns="http://www.w3.org/2000/svg" d="M19,17 C19.5522847,17 20,17.4477153 20,18 C20,18.5522847 19.5522847,19 19,19 L5,19 C4.44771525,19 4,18.5522847 4,18 C4,17.4477153 4.44771525,17 5,17 L19,17 Z M19,11 C19.5522847,11 20,11.4477153 20,12 C20,12.5522847 19.5522847,13 19,13 L5,13 C4.44771525,13 4,12.5522847 4,12 C4,11.4477153 4.44771525,11 5,11 L19,11 Z M19,5 C19.5522847,5 20,5.44771525 20,6 C20,6.55228475 19.5522847,7 19,7 L5,7 C4.44771525,7 4,6.55228475 4,6 C4,5.44771525 4.44771525,5 5,5 L19,5 Z"></path>-->
+                <!--                        </svg>-->
+                <!--                    </span>-->
+                <!--                    <span style="margin: 0 0 5px 8px;">전체 카테고리</span>-->
+                <!--                    <span role="img" rotate="0" style="margin-top: 5px;">-->
+                <!--                        <svg width="25" height="25" viewBox="0 0 28 28" fill="currentColor" aria-hidden="true" focusable="false" preserveAspectRatio="xMidYMid meet" class="css-7kp13n e181xm9y0">-->
+                <!--                            <polygon id="Triangle" transform="translate(12.000000, 12.000000) rotate(-180.000000) translate(-12.000000, -12.000000) " points="12 9 18 15 6 15"></polygon>-->
+                <!--                        </svg>-->
+                <!--                    </span>-->
+                <!--                </button>-->
+                <!--            </div>-->
+                <div class="button">
+                    <button class="css-menu-button" th:onclick="|location.href='@{/ranking/rankingList}'|">
+                        <span>유저 랭킹</span>
+                    </button>
+                </div>
+                <div class="button">
+                    <button class="css-menu-button" th:onclick="|location.href='@{/board/popular}'|">
+                        <span>인기글</span>
+                    </button>
+                </div>
+                <div class="button">
+                    <button class="css-menu-button" id="button-write"
+                            th:onclick="|location.href='@{/board/writePage}'|">
+                        <span>글쓰기</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script type="text/javascript" th:src="@{/js/fix/header.js}"></script>
+</html>

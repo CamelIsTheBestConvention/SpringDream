@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" type="image/x-icon" href="/img/admin/customer-service.png" />
+    <link rel="stylesheet" th:href="@{/css/admin/adminPage-main.css}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&family=Noto+Sans+KR&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" th:href="@{/css/adminPage.css}">
+
+    <style>
+        .statistics {
+            min-width: 165px !important;
+        }
+    </style>
+
+    <title>Header</title>
+</head>
+
+<body>
+    <!-- 오늘의 통계 -->
+    <div th:fragment="header">
+        <div class="ml-3">
+            <div class="today-count">
+                <img th:src="@{/img/admin/open-bracket.png}">
+                <p>오늘의<br>방문자<br>42</p>
+                <img src="/img/admin/close-bracket.png">
+            </div>
+            <div class="today-count">
+                <img src="/img/admin/open-bracket.png">
+                <p>오늘의<br>회원가입<br>31</p>
+                <img src="/img/admin/close-bracket.png">
+            </div>
+            <div class="today-count is-hidden-mn1024-mx1215 is-hidden-mn769-mx1023">
+                <img src="/img/admin/open-bracket.png">
+                <p>오늘의<br>문의<br>24</p>
+                <img src="/img/admin/close-bracket.png">
+            </div>
+            <div class="today-count is-hidden-mx1023">
+                <img src="/img/admin/open-bracket.png">
+                <p>오늘의<br>질문<br>42</p>
+                <img src="/img/admin/close-bracket.png">
+            </div>
+            <div class="today-count is-hidden-mx1023">
+                <img src="/img/admin/open-bracket.png">
+                <p>오늘의<br>답변<br>14</p>
+                <img src="/img/admin/close-bracket.png">
+            </div>
+            <div class="today-count is-hidden-mx1320">
+                <img src="/img/admin/open-bracket.png">
+                <p>오늘의<br>신고<br>3</p>
+                <img src="/img/admin/close-bracket.png">
+            </div>
+            <!-- <div class="column is-one-third"></div> -->
+        </div>
+    </div>
+
+
+</body>
+
+</html>

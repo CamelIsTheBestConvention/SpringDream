@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0/EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+        <typeAlias type="com.springdream.app.domain.BoardDTO" alias="boardDTO" />
+        <typeAlias type="com.springdream.app.domain.boardFileVO" alias="boardFileVO" />
+        <typeAlias type="com.springdream.app.domain.BoardVO" alias="boardVO" />
+        <typeAlias type="com.springdream.app.domain.Criteria" alias="criteria" />
+        <typeAlias type="com.springdream.app.domain.MemberVO" alias="memberVO"/>
+        <typeAlias type="com.springdream.app.domain.PointVO" alias="pointVO"/>
+        <typeAlias type="com.springdream.app.domain.PointDTO" alias="pointDTO"/>
+        <typeAlias type="com.springdream.app.domain.ReplyVO" alias="replyVO"/>
+        <typeAlias type="com.springdream.app.domain.ReplyDTO" alias="replyDTO"/>
+        <typeAlias type="com.springdream.app.domain.ReportVO" alias="reportVO"/>
+        <typeAlias type="com.springdream.app.domain.NoticeVO" alias="noticeVO"/>
+        <typeAlias type="com.springdream.app.domain.NoticeDTO" alias="noticeDTO"/>
+        <typeAlias type="com.springdream.app.domain.RankingVO" alias="rankingVO"/>
+        <typeAlias type="com.springdream.app.domain.RankingDTO" alias="rankingDTO"/>
+    </typeAliases>
+</configuration>

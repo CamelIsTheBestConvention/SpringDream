@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link th:href="@{/img/kmong.png}" rel="shortcut icon" type="image/x-icon" />
+  <link rel='stylesheet' type='text/css' media='screen' th:href='@{/css/fix/header.css}'>
+  <link rel='stylesheet' type='text/css' media='screen' th:href='@{/css/fix/footer.css}'>
+  <link rel="stylesheet"  th:href="@{/css/member/findId.css}" />
+  <link rel="stylesheet" th:href="@{/webfonts/metro-sans-medium.otf}">
+  <title>아이디/비밀번호 찾기 스프링드림</title>
+</head>
+<body>
+<!-- 헤더 로고 -->
+<!--    <nav class="navbar">-->
+<!--      <div class="header-yellow">-->
+<!--        <div class="logo">-->
+<!--          <a th:href="@{/main/index}">-->
+<!--            <span class="springdream">SpringDream</span>-->
+<!--          </a>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </nav>-->
+<div th:insert="/fix/header :: header" class="header"></div>
+
+<!-- 아이디 비밀번호 폼 -->
+<div class="container">
+  <div class="wrapper">
+    <!-- 제목 -->
+    <div class="row header-space">
+      <div class="content">
+        <h2>아이디/비밀번호 찾기</h2>
+      </div>
+    </div>
+
+    <!-- 찾기 폼 -->
+    <div class="row margin-top-15">
+      <div class="content">
+        <!-- 아이디 찾기 -->
+        <div class="panel">
+          <div class="panel-heading">아이디 찾기</div>
+          <div class="panel-body">
+            <!-- 폼 -->
+            <form class="margin-bottom-0" method="post">
+              <div class="multi-form-group margin-top-0 margin-bottom-0">
+                <!-- 이름 입력 -->
+                <div class="form-group">
+                  <input
+                          type="text"
+                          id="fullname"
+                          name="memberName"
+                          class="form-control id-find-modal"
+                          placeholder="이름"
+                          required
+                  />
+                </div>
+                <!-- 휴대폰 번호 입력 -->
+                <div class="form-group">
+                  <input
+                          type="text"
+                          id="mobile"
+                          name="memberMobile"
+                          class="form-control id-find-modal"
+                          placeholder="휴대폰 번호"
+                          required
+                  />
+                </div>
+
+                <!-- 설명 -->
+                <div class="margin-top-15 margin-bottom-15">
+                  <small>가입한 이름과 휴대폰 번호를 입력해 주세요.</small>
+                </div>
+
+                <!-- 찾기 버튼 -->
+                <input
+                        type="submit"
+                        class="id-btn margin-top-5"
+                        id="modal-id"
+                        value="아이디 찾기"
+                />
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- 비밀번호 찾기 -->
+        <div class="panel margin-bottom-0">
+          <div class="panel-heading">비밀번호 찾기</div>
+          <div class="panel-body">
+            <!-- 폼 -->
+            <form class="margin-bottom-0">
+              <div class="multi-form-group margin-top-0 margin-bottom-0">
+                <!-- 아이디 입력 -->
+                <div class="form-group">
+                  <input
+                          type="text"
+                          id="fullId"
+                          class="form-control pw-find-modal"
+                          placeholder="아이디"
+                          required
+                  />
+                </div>
+                <!-- 휴대폰 번호 입력 -->
+                <div class="form-group">
+                  <input
+                          type="text"
+                          id="text"
+                          class="form-control pw-find-modal"
+                          placeholder="휴대폰 번호"
+                          required
+                  />
+                </div>
+
+                <!-- 설명 -->
+                <div class="margin-top-15 margin-bottom-15">
+                  <small
+                  >가입한 아이디와 휴대폰 번호를 입력해 주세요.</small
+                  >
+                </div>
+
+                <!-- 찾기 버튼 -->
+                <input
+                        type="submit"
+                        class="pw-btn margin-top-5"
+                        id="modal-pw"
+                        value="비밀번호 찾기"
+                />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 로그인 회원가입 버튼 -->
+    <div class="row margin-top-10">
+      <div class="content">
+        <!-- 로그인 이동 -->
+        <div class="page-move text-left">
+          <div class="row">
+            <!--                <a th:href="@{/member/login}">-->
+            <!--                  <h5>로그인</h5>-->
+            <!--                </a>-->
+            <h5></h5>
+          </div>
+        </div>
+        <!-- 회원가입 이동 -->
+        <div class="page-move text-right">
+          <div class="row">
+            <!--                <a th:href="@{/member/join}">-->
+            <!--                  <h5>회원가입</h5>-->
+            <!--                </a>-->
+            <h5></h5>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 푸터 -->
+    <div class="row">
+      <h6 class="footer-text">
+        웹개발 5조 | 서울특별시 강남구 역삼동 736-7 | 고객센터 : 1544-6254
+      </h6>
+    </div>
+  </div>
+</div>
+
+<!-- 모달 창 -->
+<!-- 모달 아이디 -->
+<div class="modal id-modal">
+  <div class="modal_content" title="클릭하면 창이 닫힙니다.">
+    <!-- 내용 -->
+    <div class="panel">
+      <div class="panel-heading modal-space">가입된 아이디</div>
+      <div class="find-content">
+        <span>msj1234</span>
+        <span>msj1234</span>
+        <span>msj1234</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 모달 비밀번호 -->
+<div class="modal pw-modal">
+  <div class="modal_content" title="클릭하면 창이 닫힙니다.">
+    <!-- 내용 -->
+    <div class="panel">
+      <div class="panel-heading modal-space">확인된 비밀번호</div>
+      <div class="find-content">
+        <span>moon1541</span>
+        <span>moon1541</span>
+        <span>moon1541</span>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="/js/fix/header.js"></script>
+<script>
+  // 아이디 찾기 버튼
+  $(function () {
+    $("#modal-id").click(function () {
+      $(".id-modal").fadeIn();
+    });
+
+    $(".modal_content").click(function () {
+      $(".id-modal").fadeOut();
+    });
+  });
+
+  // 비밀번호 찾기 버튼
+  $(function () {
+    $("#modal-pw").click(function () {
+      $(".pw-modal").fadeIn();
+    });
+
+    $(".modal_content").click(function () {
+      $(".pw-modal").fadeOut();
+    });
+  });
+
+  // 입력해야 버튼 활성화
+  // 아이디
+  $(document).ready(function () {
+    $(".id-btn").click(function (event) {
+      if ($(".id-find-modal").val() == "") {
+        event.preventDefault();
+        alert("이름과 휴대폰번호를 입력해주세요.");
+        $(".id-modal").hide();
+      }
+    });
+  });
+
+  // 비밀번호
+  $(document).ready(function () {
+    $(".pw-btn").click(function (event) {
+      if ($(".pw-find-modal").val() == "") {
+        event.preventDefault();
+        alert("아이디와 휴대폰번호를 입력해주세요.");
+        $(".pw-modal").hide();
+      }
+    });
+  });
+</script>
+</html>

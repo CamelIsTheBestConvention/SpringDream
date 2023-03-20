@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel='stylesheet' type='text/css' media='screen' th:href='@{/css/board/modifyPage.css}'>
+    <link rel='stylesheet' type='text/css' media='screen' th:href='@{/css/fix/header.css}'>
+    <link rel='stylesheet' type='text/css' media='screen' th:href='@{/css/fix/footer.css}'>
+    <title>게시글 수정-스프링드림</title>
+</head>
+<body>
+<!-- 헤더  -->
+<div th:insert="/fix/header :: header" class="header"></div>
+<!-- 글쓰기 페이지 -->
+<main role="main">
+    <div class="container-divider"></div>
+    <div class="container">
+        <!-- 페이지 경로 -->
+        <nav class="sub-nav">
+            <ol class="page-order">
+                <li>
+                    <a href="#">질문</a>
+                </li>
+                <li>
+                    <a href="#">게시글 수정</a>
+                </li>
+            </ol>
+        </nav>
+
+        <!-- 타이틀 -->
+        <h1>
+            <div class="page-title">게시글 수정</div>
+            <div class="caution">
+                <a href="#">
+                    <em>
+                        <strong>[중요] 질문은 예의 있게 작성해주세요.</strong>
+                    </em>
+                </a>
+            </div>
+        </h1>
+
+        <!-- 글쓰기 양식 -->
+        <div class="form">
+            <form id="new-write" class="write-form" action="">
+                <!-- 카테고리 체크박스 -->
+                <div class="category-radio">
+                    <div>
+                        <input type="radio" name="subject" value="1" checked /> 국어
+                    </div>
+                    <div><input type="radio" name="subject" value="2" /> 영어</div>
+                    <div><input type="radio" name="subject" value="3" /> 수학</div>
+                    <div><input type="radio" name="subject" value="4" /> 과탐</div>
+                    <div><input type="radio" name="subject" value="5" /> 사탐</div>
+                    <div><input type="radio" name="subject" value="6" /> 한국사</div>
+                    <div>
+                        <input type="radio" name="subject" value="7" /> 제2외국어
+                    </div>
+                </div>
+                <!-- 글 제목 -->
+                <div class="write-title">
+                    <label for=""> 제목 </label>
+                    <input type="text" maxlength="20" placeholder="작성했던 제목" />
+                </div>
+                <!-- 글 내용-->
+                <div class="write-content">
+                    <label for=""> 설명 </label>
+                    <div>
+                        <input
+                                class="content-enter"
+                                type="text"
+                                maxlength="500"
+                                placeholder="작성했던 내용"
+                        />
+                    </div>
+                </div>
+                <!-- 이미지 파일 -->
+                <div class="write-title">
+                    <label for=""> 문제 이미지 </label>
+                    <div id="upload-drop" class="upload-drop">
+                        <input type="file" />
+                        <span>
+                  <a>파일 추가</a>
+                  또는 파일을 여기로 드래그
+                </span>
+                    </div>
+                </div>
+                <!-- 포인트 걸기 -->
+                <div class="point-deal">
+                    <label for=""> 등록 포인트 </label>
+                    <input type="text" />
+                </div>
+                <!-- 등록 버튼 -->
+                <footer>
+                    <input type="submit" value="등록" />
+                </footer>
+            </form>
+        </div>
+    </div>
+</main>
+<!-- 푸터 -->
+<footer th:replace="/fix/footer.html::.footer"></footer>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script type="text/javascript" th:src="@{/js/fix/header.js}"></script>
+</html>

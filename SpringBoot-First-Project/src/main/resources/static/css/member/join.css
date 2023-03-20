@@ -1,0 +1,401 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  line-height: normal;
+}
+
+h1 {
+  margin: 0.67em 0;
+  display: block;
+  font-size: 2em;
+  margin-block-start: 0.67em;
+  margin-block-end: 0.67em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+button,
+input {
+  overflow: visible;
+}
+
+@font-face {
+  font-family: "KOTRAHOPE";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/KOTRAHOPE.woff2")
+  format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+/* 전체 */
+div.join {
+  width: 560px;
+  padding: 20px 0px;
+  margin: 0 auto;
+  margin-top: 56px;
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+/* 로고 */
+a {
+  background-color: transparent;
+}
+
+a.logo {
+  font-family: "KOTRAHOPE";
+  text-decoration: none;
+  color: black;
+  font-size: 25px;
+  margin-bottom: 24px;
+  cursor: pointer;
+}
+
+/* 폼 */
+div.join-logic {
+  padding: 56px 80px;
+  border: 1px solid #e4e5ed;
+  width: 100%;
+}
+
+form {
+  display: block;
+  margin-top: 0em;
+}
+
+form.logic-form {
+  flex: 1 1 0%;
+}
+
+/* 딱 이것만 */
+h1.join-complete {
+  font-size: 28px;
+  font-weight: normal;
+  color: #303441;
+  line-height: normal;
+  margin-bottom: 40px;
+  margin-top: 0;
+}
+
+/* 폼 내용*/
+div.join-wrap {
+  position: relative;
+  padding-bottom: 16px;
+}
+
+div.join-title {
+  font-size: 16px;
+  color: rgb(85, 89, 105);
+  margin-bottom: 8px;
+  position: relative;
+}
+
+div.join-title::after {
+  position: relative;
+  left: 2px;
+  top: -2px;
+  content: "*";
+  color: rgb(255, 114, 98);
+}
+
+div.join-input {
+  width: 100%;
+  border: 1px solid rgb(228, 229, 237);
+  border-radius: 4px;
+  transition: background-color 0.2s ease 0s, border-color 0.2s ease 0s;
+  display: inline-flex;
+  flex-direction: row;
+  overflow: hidden;
+  cursor: text;
+  background-color: rgb(255, 255, 255);
+  color: rgb(48, 52, 65);
+  height: 52px;
+  font-size: 16px;
+  padding: 0px 16px;
+  min-width: 80px;
+}
+
+div.join-input:hover {
+  border: 1px solid rgb(100, 100, 100);
+}
+
+div.join-input input {
+  outline: none;
+  flex: 1 1 0%;
+  width: 100%;
+  background-image: none;
+  box-sizing: border-box;
+  font-size: inherit;
+  border: none;
+  font-weight: inherit;
+  background-color: transparent;
+  text-align: left;
+  color: inherit;
+}
+/* 약관 동의 */
+div.agree {
+  padding: 16px;
+  border: 1px solid rgb(228, 229, 237);
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+div.agree-all {
+  font-size: 15px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgb(228, 229, 237);
+  cursor: pointer;
+  display: flex;
+}
+
+div.agree-all label {
+  cursor: pointer;
+}
+
+div.agree-all-check {
+  margin: 2px 5px 0 5px;
+}
+
+div.agree-all-check input {
+  accent-color: yellow;
+}
+/* 약관 리스트 */
+div.agree-list {
+  margin-top: 16px;
+}
+
+div.agree-item {
+  font-size: 12px;
+  color: rgb(114, 117, 133);
+  margin-bottom: 4px;
+  cursor: pointer;
+  display: flex;
+}
+
+div.agree-item label {
+  cursor: pointer;
+}
+
+div.agree-item span {
+  color: rgb(255, 114, 98);
+}
+
+/* 체크박스 */
+/* 모두 동의 */
+.circle {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #333;
+  box-sizing: border-box;
+  border-radius: 10px;
+  position: relative;
+  top: 4px;
+  cursor: pointer;
+  margin: -5px 10px 0 0;
+}
+
+.circle:after {
+  content: "\2714"; /* 체크박스 특수문자 */
+  font-size: 24px;
+  color: #333;
+  position: absolute;
+  top: -16px;
+  left: 0;
+  opacity: 0;
+  transition: 0.2s;
+}
+
+#agreeAll:checked + .circle:after {
+  opacity: 1;
+}
+
+#agreeAll {
+  position: absolute;
+  left: -999em;
+}
+
+/* 약관 리스트 동의 */
+/* 1 */
+.circle1 {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgb(154, 155, 167);
+  box-sizing: border-box;
+  border-radius: 10px;
+  position: relative;
+  top: 4px;
+  cursor: pointer;
+  margin: -5px 10px 0 0;
+}
+
+.circle1:after {
+  content: "\2714"; /* 체크박스 특수문자 */
+  font-size: 16px;
+  color: rgb(154, 155, 167);
+  position: absolute;
+  top: -10px;
+  left: 0;
+  opacity: 0;
+  transition: 0.2s;
+}
+
+#agree1:checked + .circle1:after {
+  opacity: 1;
+}
+
+#agree1 {
+  position: absolute;
+  left: -999em;
+}
+
+/* 2 */
+.circle2 {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgb(154, 155, 167);
+  box-sizing: border-box;
+  border-radius: 10px;
+  position: relative;
+  top: 4px;
+  cursor: pointer;
+  margin: -5px 10px 0 0;
+}
+
+.circle2:after {
+  content: "\2714"; /* 체크박스 특수문자 */
+  font-size: 16px;
+  color: rgb(154, 155, 167);
+  position: absolute;
+  top: -10px;
+  left: 0;
+  opacity: 0;
+  transition: 0.2s;
+}
+
+#agree2:checked + .circle2:after {
+  opacity: 1;
+}
+
+#agree2 {
+  position: absolute;
+  left: -999em;
+}
+
+/* 3 */
+.circle3 {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgb(154, 155, 167);
+  box-sizing: border-box;
+  border-radius: 10px;
+  position: relative;
+  top: 4px;
+  cursor: pointer;
+  margin: -5px 10px 0 0;
+}
+
+.circle3:after {
+  content: "\2714"; /* 체크박스 특수문자 */
+  font-size: 16px;
+  color: rgb(154, 155, 167);
+  position: absolute;
+  top: -10px;
+  left: 0;
+  opacity: 0;
+  transition: 0.2s;
+}
+
+#agree3:checked + .circle3:after {
+  opacity: 1;
+}
+
+#agree3 {
+  position: absolute;
+  left: -999em;
+}
+
+/* 4 */
+.circle4 {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgb(154, 155, 167);
+  box-sizing: border-box;
+  border-radius: 10px;
+  position: relative;
+  top: 4px;
+  cursor: pointer;
+  margin: -5px 10px 0 0;
+}
+
+.circle4:after {
+  content: "\2714"; /* 체크박스 특수문자 */
+  font-size: 16px;
+  color: rgb(154, 155, 167);
+  position: absolute;
+  top: -10px;
+  left: 0;
+  opacity: 0;
+  transition: 0.2s;
+}
+
+#agree4:checked + .circle4:after {
+  opacity: 1;
+}
+
+#agree4 {
+  position: absolute;
+  left: -999em;
+}
+
+/* 가입 완료 버튼 */
+button.join-btn {
+  width: 100%;
+  /* cursor: not-allowed; */
+  background-color: rgb(228, 229, 237);
+  border-color: rgb(228, 229, 237);
+  color: rgb(154, 155, 167);
+  height: 52px;
+  border: 0;
+  outline: 0;
+}
+
+button.join-btn:hover {
+  border: 2px solid black;
+}
+
+span.join-btn-text {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* 설명 */
+p.site-explain {
+  margin: 24px 0px;
+  font-size: 13px;
+  color: rgb(154, 155, 167);
+  text-align: center;
+  line-height: normal;
+}
+
+/* 블러 처리 */
+/*.check-alert {*/
+/*  font-size: 13px;*/
+/*  color: red;*/
+/*}*/
+
+#agree-alert {
+  margin-top: -10px;
+  margin-bottom: 20px;
+}

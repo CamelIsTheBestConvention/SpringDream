@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper  namespace="com.springdream.app.mapper.MemberMapper">
+
+    <!--  회원추가  -->
+    <insert id="insert" parameterType="memberVO">
+        <selectKey keyProperty="memberNumber" order="BEFORE" resultType="long">
+            SELECT SEQ_DREAM_MEMBER.NEXTVAL FROM DUAL
+        </selectKey>
+        INSERT INTO TBL_DREAM_MEMBER (MEMBER_NUMBER, MEMBER_ID, MEMBER_PW, MEMBER_EMAIL, MEMBER_NAME, MEMBER_NICKNAME, MEMBER_MOBILE)
+        VALUES (#{memberNumber}, #{memberId}, #{memberPw}, #{memberEmail}, #{memberName}, #{memberNickname}, #{memberMobile})
+    </insert>
+
+    <!--  회원수정  -->
+    <update id="update" parameterType="memberVO">
+        UPDATE TBL_DREAM_MEMBER
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="memberId != null and memberId != ''">
+                MEMBER_ID = #{memberId},
+            </if>
+            <if test="memberPw != null and memberPw != ''">
+                MEMBER_PW = #{memberPw},
+            </if>
+            <if test="memberEmail != null and memberEmail != ''">
+                MEMBER_EMAIL = #{memberEmail},
+            </if>
+            <if test="memberName != null and memberName != ''">
+                MEMBER_NAME = #{memberName},
+            </if>
+            <if test="memberNickname != null and memberNickname != ''">
+                MEMBER_NICKNAME = #{memberNickname},
+            </if>
+            <if test="memberMobile != null and memberMobile != ''">
+                MEMBER_MOBILE = #{memberMobile},
+            </if>
+        </trim>
+        WHERE MEMBER_NUMBER = #{memberNumber}
+    </update>
+    <!--    <if test="memberRank != null and memberRank != ''">-->
+    <!--        MEMBER_RANK = #{memberRank}-->
+    <!--    </if>-->
+
+    <!--  회원삭제  -->
+    <delete id="delete">
+        DELETE FROM TBL_DREAM_MEMBER WHERE MEMBER_NUMBER = #{memberNumber}
+    </delete>
+
+    <!--  회원탈퇴  -->
+    <update id="quit">
+        UPDATE TBL_DREAM_MEMBER SET MEMBER_STATUS = 0
+        WHERE MEMBER_NUMBER = #{memberNumber}
+    </update>
+
+    <!--  회원조회  -->
+    <select id="select" resultType="memberVO">
+        SELECT MEMBER_NUMBER, MEMBER_NAME, MEMBER_ID, MEMBER_PW, MEMBER_EMAIL, MEMBER_NICKNAME, MEMBER_MOBILE, MEMBER_RANK, MEMBER_STATUS FROM TBL_DREAM_MEMBER
+        WHERE MEMBER_NUMBER = #{memberNumber}
+    </select>
+
+    <!--  회원 댓글 전체조회  -->
+    <select id="memberBoardCount" resultType="_int">
+        SELECT COUNT(*) AS MEMBER_BOARD_COUNT FROM TBL_DREAM_BOARD WHERE MEMBER_NUMBER = #{memberNumber}
+    </select>
+
+    <!--  회원 전체조회  -->
+    <select id="selectAll" resultType="memberVO">
+        SELECT MEMBER_NUMBER, MEMBER_NAME, MEMBER_ID, MEMBER_PW, MEMBER_EMAIL, MEMBER_NICKNAME, MEMBER_MOBILE, MEMBER_RANK, MEMBER_STATUS FROM
+        (
+            SELECT ROWNUM R, MEMBER_NUMBER, MEMBER_NAME, MEMBER_ID, MEMBER_PW, MEMBER_EMAIL, MEMBER_NICKNAME, MEMBER_MOBILE, MEMBER_RANK, MEMBER_STATUS
+            FROM
+            (
+                SELECT MEMBER_NUMBER, MEMBER_NAME, MEMBER_ID, MEMBER_PW, MEMBER_EMAIL, MEMBER_NICKNAME, MEMBER_MOBILE, MEMBER_RANK, MEMBER_STATUS FROM TBL_DREAM_MEMBER
+                ORDER BY MEMBER_NUMBER DESC
+            ) D1
+            <![CDATA[
+            WHERE ROWNUM <= #{page} * #{amount}
+        ) WHERE R > (#{page} - 1) * #{amount} ]]>
+    </select>
+
+    <!--  전체 회원 수 조회  -->
+    <select id="countTotal" resultType="_int">
+        SELECT COUNT(MEMBER_NUMBER) FROM TBL_DREAM_MEMBER
+    </select>
+
+    <select id="selectRecent" parameterType="_int" resultType="memberVO">
+        SELECT MEMBER_NUMBER, MEMBER_NAME, MEMBER_ID, MEMBER_PW, MEMBER_EMAIL, MEMBER_NICKNAME, MEMBER_MOBILE, MEMBER_RANK, MEMBER_STATUS
+        FROM (SELECT * FROM TBL_DREAM_MEMBER ORDER BY MEMBER_NUMBER DESC)
+        WHERE MEMBER_STATUS <![CDATA[=]]> 1 AND ROWNUM <![CDATA[<=]]> #{criteria}
+    </select>
+
+    <!--  아이디 중복확인  -->
+    <select id="checkId" parameterType="string" resultType="_int">
+    	SELECT COUNT (MEMBER_NUMBER) FROM TBL_DREAM_MEMBER WHERE MEMBER_ID = #{memberId}
+    </select>
+
+    <!--  로그인  -->
+    <!--  로그인 실패 시 0 출력  -->
+    <!--  NVL(a, b) : 조회된 값 Null 이면 b 출력  -->
+    <!--  SELECT [GROUP BY 절에 지정된 컬럼1] [GROUP BY별로 집계할 값]
+          FROM [테이블 명] -->
+    <!--    NVL(MAX(MEMBER_NUMBER), 0)-->
+    <select id="login" parameterType="memberVO" resultType="_int">
+		SELECT NVL(MAX(MEMBER_NUMBER), 0) FROM TBL_DREAM_MEMBER WHERE MEMBER_ID = #{memberId} AND MEMBER_PW = #{memberPw}
+	</select>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

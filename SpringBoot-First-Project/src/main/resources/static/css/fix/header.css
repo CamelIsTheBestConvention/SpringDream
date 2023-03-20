@@ -1,0 +1,224 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    font-family: 'Metro Sans';
+}
+
+@font-face {
+    font-family: 'Metro Sans';
+    src: url("metro-sans-medium.otf");
+}
+
+
+.css-header{
+    z-index: 8;
+    background-color: white;
+    border-bottom: 1px solid #e4e5ed;
+    position: sticky;
+    top: 0px;
+    left: 0;
+    right: 0;
+}
+
+.css-header-main{
+    height: 120px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 1400px;
+    margin: 0 auto;
+    padding: 0 25px;
+}
+
+.css-logo{
+    cursor: pointer;
+    text-decoration: none;
+    width: 85px;
+    height: 26px;
+    font-size: large;
+}
+
+.css-search{
+    margin: 0px 16px;
+    display: flex;
+    justify-content: right;
+    width: 100%;
+    max-width: 400px;
+    transition: max-width 0.2s ease-in-out 0s;
+    position: relative;
+}
+
+.css-input-wrapper{
+    width: 65%;
+    border: 1px solid transparent;
+    display: inline-flex;
+    align-items: center;
+    flex-direction: row;
+    overflow: hidden;
+    cursor: text;
+    background-color: transparent;
+    height: 42px;
+    padding: 0px 15px;
+    min-width: 64px;
+    border-radius: 20px;
+    transition: all ease 0.3s;
+}
+
+.css-input {
+    outline: none;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    font-weight: bold;
+    padding-left: 7px;
+    width: 100%;
+    height: 42px;
+    transition: all 0.7s;
+    caret-color: rgb(46, 46, 46);
+    font-family: inherit;
+}
+
+.css-input::placeholder{
+    color: rgb(46, 46, 46, 0.3);
+}
+
+.css-input:focus::placeholder{
+    color: transparent;
+}
+
+.suffix-wrapper{
+    padding-left: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-basis: auto;
+}
+
+.css-buttons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.css-button{
+    margin: 0px 5px 0 0;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: transparent;
+    border: 2px solid transparent;
+    height: 42px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.css-button:active{
+    border-color: rgb(46, 46, 46, 0.2);
+    background-color: rgb(46, 46, 46, 0.2);
+}
+
+#button-join{
+    background-color: #fcba03;
+}
+
+.css-category{
+    background-color: white;
+    border-bottom: 1px solid #e4e5ed;
+    position: sticky;
+}
+
+.css-category-main{
+    height: 48px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 1400px;
+    margin: 0 auto;
+    padding: 0 25px;
+    margin-bottom: 12px;
+}
+
+.css-categoryAll-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 48px;
+    position: relative;
+    padding-bottom: 0px;
+    border-bottom: 2px solid transparent;
+}
+
+.css-categoryAll-wrapper:hover{
+    border-bottom: 2px solid #fcba03;
+}
+
+.css-category-button{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 16px;
+    color: #2e2e2e;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    font-weight: bold;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* .css-dropdown ul{
+    list-style: none;
+}
+
+.css-dropdown ul li{
+    text-align: center;
+}
+
+.css-dropdown a{
+    text-decoration: none;
+    color: inherit;
+} */
+
+.css-menu-button{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 14px;
+    color: #303441;
+    background-color: transparent;
+    display: flex;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 3px;
+    padding-bottom: 3px;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    font-weight: normal;
+    font-family: inherit;
+}
+
+.css-menu-button:hover{
+    font-weight: bold;
+}
+
+.button{
+    display: flex;
+    justify-content: center;
+    border-bottom: 2px solid transparent;
+    height: 45px;
+}
+
+.button:hover{
+    border-bottom: 2px solid #fcba03;
+}

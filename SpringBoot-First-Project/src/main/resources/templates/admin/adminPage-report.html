@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" type="image/x-icon" href="/img/admin/customer-service.png" />
+    <link rel="stylesheet" th:href="@{/css/admin/adminPage-report.css}" />
+    <link rel="stylesheet" th:href="@{/css/admin/adminPage-interface.css}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&family=Noto+Sans+KR&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" th:href="@{/css/admin/adminPage.css}">
+    <link rel="stylesheet" th:href="@{/css/admin/adminPage-main.css}"/>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+    <title>SpringDream AdminPage</title>
+</head>
+
+<style>
+
+</style>
+
+<body>
+    <div class="body-wrap">
+        <div th:insert="~{/admin/adminPage-sider.html :: sider}" ></div>
+
+        <div class="dummy"></div>
+
+        <div class="content-wrap">
+
+            <!-- 컨텐츠 주제 -->
+            <div class="columns" style="max-height: 80px;">
+                <div class="content-name column is-left ml-6 pt-0 mb-0 mt-5 pb-0">
+                    <img class="mt-2" src="/img/admin/settings.png" />
+                    <h3 class="mt-2">SpringDream 신고 관리</h3>
+                </div>
+
+                <!-- 프로필 사진 & 로그아웃 -->
+                <div class="content-header-profile column is-right is-one-quarter-desktop mr-6 mt-3">
+                    <div class="profile-box pointer">
+                        <img src="/img/admin/bukbuk.png" />
+                        <span>벅벅코딩</span>
+                    </div>
+                    <button class="logout pointer">Logout</button>
+                </div>
+            </div>
+
+            <!--   헤더   -->
+            <div th:insert="~{/admin/adminPage-header :: header}">헤더</div>
+
+            <!-- 컨텐츠 시작 -->
+            <div class="content-body">
+                <div class="request-wrap">
+                    <!-- 제목 -->
+                    <div class="title-box">
+                        <h2>신고 목록</h2>
+                    </div>
+                    <div class="request-box">
+                        <!-- 테이블 -->
+                        <table class="type03">
+                            <thead>
+                                <tr>
+                                    <th scope="cols" class="total-name">회원 번호</th>
+                                    <th scope="cols">게시글 번호</th>
+                                    <th scope="cols">신고 유형</th>
+                                    <th scope="cols">신고 날짜</th>
+                                    <th scope="cols">신고제목</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <th:block th:each="report:${reports}">
+                                    <tr class="tBody" th:object="${report}">
+                                        <th scope="row"
+                                            th:onclick="|javascript:searchMember('*{memberNumber}', 'memberNumber')|"th:text="*{memberNumber}"></th>
+                                            <td class="boardNumber"
+                                                th:onclick="|javascript:searchBoard('*{boardNumber}', 'boardNumber')|" th:text="*{boardNumber}"></td>
+                                            <td th:text="*{reportType}"></td>
+                                            <td th:text="*{reportDate}"></td>
+                                            <td th:text="*{reportTitle}"></td>
+                                        </td>
+                                    </tr>
+                                </th:block>
+                            </tbody>
+                        </table>
+                        <!-- 페이지 버튼 -->
+                    </div>
+                    <div class="page-btn">
+                        <button class="img-btn">
+                            <img src="/img/admin/prevPage-btn1.png" alt="prevPage" />
+                        </button>
+                        <button class="img-btn">
+                            <img src="/img/admin/prev-btn.png" alt="prev" />
+                        </button>
+                        <button class="move-btn">1</button>
+                        <button class="move-btn">2</button>
+                        <button class="move-btn">3</button>
+                        <button class="move-btn">4</button>
+                        <button class="move-btn">5</button>
+                        <button class="move-btn">6</button>
+                        <button class="move-btn">7</button>
+                        <button class="move-btn">8</button>
+                        <button class="move-btn">9</button>
+                        <button class="move-btn">10</button>
+                        <button class="img-btn">
+                            <img src="/img/admin/next-btn.png" alt="next" />
+                        </button>
+                        <button class="img-btn">
+                            <img src="/img/admin/nextpage-btn.png" alt="nextPage" />
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script src="/js/admin/admin-report.js"></script>
+
+</html>

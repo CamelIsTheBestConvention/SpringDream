@@ -1,0 +1,244 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Nanum Gothic Coding", monospace;
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.border-radius {
+  border-radius: 0 !important;
+}
+
+.flex {
+  display: flex;
+}
+
+li:hover {
+  background-color: #1a212f;
+  color: #56b7dd;
+}
+
+.select {
+  background-color: #1a212f;
+  color: #56b7dd;
+}
+.select img:nth-child(3) {
+  width: 30px;
+  height: 30px;
+  margin-left: 80px;
+  filter: brightness(200%);
+}
+
+.content-click:hover {
+  border: 1px solid black;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul.category a {
+  color: white;
+}
+
+/* 전체 div */
+div.body-wrap {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+}
+/* 메뉴*/
+div.menu-wrap {
+  width: 15%;
+  min-width: 15rem;
+  max-width: 15vw;
+  height: 100vh;
+  background-color: #283140;
+  color: #58d3f7;
+  position: fixed;
+}
+div.dummy {
+  width: 15%;
+  min-width: 15rem;
+  height: 100vh;
+  background-color: #c0c7c8;
+}
+div.menu-header {
+  width: 100%;
+  height: 7vh;
+  min-height: 3.125rem;
+  background-color: #283140;
+  border-bottom: 0.063rem solid grey;
+}
+
+div.menu-header-name {
+  margin: auto 0;
+  padding-top: 0.438rem;
+}
+div.menu-header h3 {
+  font-size: 1.9rem;
+  text-align: center;
+}
+div.menu-body {
+  width: 100%;
+  height: 93vh;
+  color: #e0ecf8;
+}
+
+/* 메뉴 */
+ul.site-visit {
+  list-style: none;
+}
+ul.site-visit li {
+  display: flex;
+  margin: 1.25rem;
+  padding: 10px;
+}
+ul.site-visit li img {
+  width: 2rem;
+  height: 2rem;
+}
+ul.site-visit li span {
+  font-size: 1.125rem;
+  text-align: center;
+  margin-left: 0.938rem;
+}
+/* 카테고리 */
+ul.category {
+  list-style: none;
+  padding-top: 0.938rem;
+}
+ul.category li {
+  display: flex;
+  margin: 1.25rem;
+  padding: 10px;
+}
+ul.category li img {
+  width: 20px;
+  height: 20px;
+  margin: auto;
+}
+ul.category li span {
+  font-size: 1.125rem;
+  text-align: center;
+  margin-left: 0.938rem;
+}
+
+/* 컨텐츠 */
+div.content-wrap {
+  width: 85%;
+  color: black;
+  /* background-color: #c0c7c8; */
+  /* background-color: white; */
+}
+/* 컨텐츠 헤더 */
+div.content-header {
+  width: 100%;
+  height: 7%;
+  min-height: 3.125rem;
+  color: black;
+  background-color: #ceecf5;
+  border-bottom: 0.063rem solid #c0c7c8;
+  box-shadow: 0.063rem 0 0.313rem gray;
+  display: flex;
+  justify-content: space-between;
+}
+/* 컨텐츠 주제 */
+div.content-name {
+  display: flex;
+  margin: auto 0;
+}
+div.content-name img {
+  width: 1.875rem;
+  height: 1.875rem;
+  margin-left: 1rem;
+}
+div.content-header h3 {
+  font-size: 1.25rem;
+  margin-left: 1rem;
+  color: #084b8a;
+}
+/* 헤더 프로필 */
+div.content-header-profile {
+  display: flex;
+}
+div.profile-box {
+  display: flex;
+  border: 1px solid white;
+  width: 100%;
+  height: 80%;
+  border-radius: 3rem;
+  background-color: #ebf2fb;
+  margin: auto 0;
+}
+div.profile-box:hover {
+  border: 1px solid #2196f3;
+  transition: 0.5s;
+}
+
+div.profile-box img {
+  width: 5vh;
+  min-width: 2.2rem;
+  border-radius: 2rem;
+  margin: auto 0;
+  padding: 5px;
+  background-color: ghostwhite;
+}
+div.profile-box span {
+  font-size: 1rem;
+  color: #657884;
+  text-align: center;
+  margin: auto 0;
+  border-radius: 2rem;
+  padding-left: 10px;
+}
+/* 로그아웃 */
+button.logout {
+  margin: auto 0.625rem;
+  width: 5.625rem;
+  height: 1.875rem;
+  border-radius: 1.25rem;
+  border: none;
+  background-color: #50c1ef;
+  color: white;
+  font-weight: 700;
+  padding-bottom: 0.188rem;
+}
+button.logout:hover {
+  border: 1px solid #2196f3;
+  transition: 0.5s;
+}
+/* 오늘의 통계 */
+div.today-box {
+  display: flex;
+}
+div.today-count {
+  display: flex;
+  margin: 0 5px;
+  text-align: center;
+  /* border: 2px solid #036; */
+}
+div.today-count img {
+  width: 40px;
+  margin: auto 0;
+  filter: opacity(0.5) drop-shadow(0 0 0 #036);
+}
+div.today-count p {
+  margin: auto 0;
+  color: #036;
+  font-weight: 700;
+}
+
+/* 컨텐츠 바디 */
+div.content-body {
+  background-color: #f2f5ff;
+  width: 100%;
+  height: 93%;
+  display: flex;
+  flex-direction: column;
+}

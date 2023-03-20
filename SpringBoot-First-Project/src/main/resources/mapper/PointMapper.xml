@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.springdream.app.mapper.PointMapper">
+
+    <!--    &lt;!&ndash;  회원가입  &ndash;&gt;-->
+    <!--    <insert id="insert" parameterType="Long">-->
+    <!--&#45;&#45;         SELECT M.MEMBER_NUMBER-->
+    <!--    INSERT INTO TBL_POINT (MEMBER_NUMBER)-->
+    <!--    VALUES (#{memberNumber})-->
+    <!--    </insert>-->
+
+
+    <!-- 개인 포인트 조회 -->
+    <select id="select" resultType="pointVO">
+        SELECT CURRENT_POINT, TOTAL_POINT, MEMBER_NUMBER
+        FROM TBL_DREAM_POINT
+        WHERE MEMBER_NUMBER = #{memberNumber}
+    </select>
+
+    <select id="countReplies">
+    SELECT M.MEMBER_NICKNAME, COUNT(*) AS REPLIES
+    FROM TBL_DREAM_MEMBER M
+        JOIN TBL_DREAM_REPLY R
+        ON M.MEMBER_NUMBER = R.MEMBER_NUMBER
+    GROUP BY M.MEMBER_NICKNAME
+    ORDER BY REPLIES DESC
+    </select>
+
+    <!--    채택 수-->
+    <select id="selectAllOderByAdoptCount" resultType="pointDTO">
+        SELECT M.MEMBER_NUMBER, M.MEMBER_NICKNAME, COUNT(M.MEMBER_NUMBER)
+        FROM TBL_DREAM_MEMBER M
+            INNER JOIN TBL_DREAM_REPLY R
+            ON M.MEMBER_NUMBER, R.MEMBER_NUMBER
+        WHERE R.REPLY_ADOPT = 1
+    </select>
+
+    <!--  포인트 넣기  -->
+    <insert id="insert" parameterType="pointVO">
+        INSERT INTO TBL_DREAM_POINT (CURRENT_POINT, TOTAL_POINT, MEMBER_NUMBER) VALUES (#{currentPoint}, #{totalPoint}, #{memberNumber})
+    </insert>
+    <!--  포인트 충전  -->
+    <update id="addPoint">
+        UPDATE TBL_DREAM_POINT SET CURRENT_POINT = CURRENT_POINT + #{point}, TOTAL_POINT = TOTAL_POINT + #{point} WHERE MEMBER_NUMBER = #{memberNumber}
+    </update>
+</mapper>
+
+        <!--    <select id="select" resultType="boardVO">-->
+        <!--        SELECT BOARD_NUMBER, BOARD_TITLE, BOARD_WRITER, BOARD_CONTENT, BOARD_REGISTER_DATE, BOARD_UPDATE_DATE-->
+        <!--        FROM TBL_BOARD-->
+        <!--        WHERE BOARD_NUMBER = #{boardNumber}-->
+        <!--    </select>-->
+
+        <!--<select id="selectAll" resultType="boardVO">-->
+        <!--        SELECT BOARD_NUMBER, BOARD_TITLE, BOARD_WRITER, BOARD_CONTENT, BOARD_REGISTER_DATE, BOARD_UPDATE_DATE-->
+        <!--        FROM-->
+        <!--        (-->
+        <!--            SELECT ROWNUM R, BOARD_NUMBER, BOARD_TITLE, BOARD_WRITER, BOARD_CONTENT, BOARD_REGISTER_DATE, BOARD_UPDATE_DATE-->
+        <!--            FROM-->
+        <!--            (-->
+        <!--                SELECT BOARD_NUMBER, BOARD_TITLE, BOARD_WRITER, BOARD_CONTENT, BOARD_REGISTER_DATE, BOARD_UPDATE_DATE-->
+        <!--                FROM TBL_BOARD B-->
+        <!--                ORDER BY BOARD_NUMBER DESC-->
+        <!--            ) D2-->
+        <!--        <![CDATA[-->
+        <!--        WHERE ROWNUM <= #{page} * #{amount}-->
+        <!--        ) WHERE R > (#{page} - 1) * #{amount}-->
+        <!--        ]]>-->
+        <!--</select>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+

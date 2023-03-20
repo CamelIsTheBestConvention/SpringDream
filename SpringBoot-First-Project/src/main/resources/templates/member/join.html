@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel='stylesheet' type='text/css' th:href="@{/css/member/join.css}">
+  <link rel="stylesheet" th:href="@{/webfonts/metro-sans-medium.otf}">
+  <title>질문이 필요한 순간, SpringDream 회원가입</title>
+  <script
+          src="https://code.jquery.com/jquery-3.4.1.js"
+          integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+          crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="wrapper">
+  <div class="join">
+    <!-- 로고 -->
+    <a th:href="@{/main/index}" class="logo">
+      <span class="logo-title">SpringDream</span>
+    </a>
+
+    <!-- 회원가입 로직 -->
+    <div class="join-logic">
+      <!--          <form th:action="@{/member/joinOk}" class="logic-form">-->
+      <form id="join-form" method="post" class="logic-form">
+        <h1 class="join-complete">딱 이것만 체크하면 가입완료!</h1>
+
+        <!-- 이름 -->
+        <div class="join-wrap">
+          <div class="join-title">이 름</div>
+          <div class="join-input">
+            <input
+                    type="text"
+                    placeholder="이름을 입력해 주세요."
+                    id="name-check"
+                    name="memberName"
+            />
+            <!--                <span id="name-alert" style="font-size: 13px;"></span>-->
+          </div>
+          <div id="name-alert" class="check-alert" style="font-size: 13px;"></div>
+        </div>
+
+        <!-- 닉네임 -->
+        <div class="join-wrap">
+          <div class="join-title">닉네임</div>
+          <div class="join-input">
+            <input
+                    type="text"
+                    placeholder="닉네임을 입력해 주세요."
+                    id="nick-check"
+                    name="memberNickname"
+            />
+          </div>
+          <div id="nick-alert" class="check-alert" style="font-size: 13px;"></div>
+        </div>
+
+        <!-- 아이디 -->
+        <div class="join-wrap">
+          <div class="join-title" style="display: inline-block">아이디</div>
+          <div class="join-input">
+            <input
+                    type="text"
+                    placeholder="아이디를 입력해 주세요."
+                    id="id-check"
+                    name="memberId"
+            />
+          </div>
+          <div id="id-alert" class="check-alert" style="font-size: 13px;"></div>
+        </div>
+
+        <!-- 비밀번호 -->
+        <div class="join-wrap">
+          <div class="join-title">비밀번호</div>
+          <div class="join-input">
+            <input
+                    type="password"
+                    placeholder="비밀번호를 입력해 주세요. (6자리 이상)"
+                    class="id-check"
+                    id="pw-check"
+                    name="memberPw"
+            />
+          </div>
+          <div id="pw-alert" class="check-alert" style="font-size: 13px;"></div>
+        </div>
+
+        <!-- 비밀번호 확인 -->
+        <div class="join-wrap">
+          <div class="join-input">
+            <input
+                    type="password"
+                    placeholder="비밀번호를 한번 더 입력해 주세요."
+                    id="pw2-check"
+            />
+          </div>
+          <div id="pw2-alert" class="check-alert" style="font-size: 13px; color: red"></div>
+        </div>
+
+        <!-- 이메일 -->
+        <div class="join-wrap">
+          <div class="join-title">이메일</div>
+          <div class="join-input">
+            <input
+                    type="email"
+                    placeholder="이메일을 입력해 주세요."
+                    id="mail-check"
+                    name="memberEmail"
+            />
+          </div>
+          <div id="mail-alert" class="check-alert" style="font-size: 13px;"></div>
+        </div>
+
+        <!-- 휴대폰 번호 -->
+        <div class="join-wrap">
+          <div class="join-title">휴대폰 번호</div>
+          <div class="join-input">
+            <input
+                    type="text"
+                    placeholder="휴대폰 번호를 입력해 주세요."
+                    id="phone-check"
+                    name="memberMobile"
+            />
+          </div>
+          <div id="phone-alert" class="check-alert" style="font-size: 13px;"></div>
+        </div>
+
+        <!-- 약관 동의 -->
+        <div class="agree">
+          <!-- 모두 동의 -->
+          <div class="agree-all">
+            <label for="agreeAll" class="check-labelAll">
+              <input type="checkbox" id="agreeAll"/>
+              <i class="circle"></i>
+              모두 동의합니다.
+            </label>
+          </div>
+
+          <!-- 약관들 -->
+          <div class="agree-list">
+            <div class="agree-item">
+              <label for="agree1" class="check-label">
+                <input type="checkbox" id="agree1" name="chk"/>
+                <i class="circle1"></i>
+                만 14세 이상입니다.
+                <span>(필수)</span>
+              </label>
+            </div>
+
+            <div class="agree-item">
+              <label for="agree2" class="check-label">
+                <input type="checkbox" id="agree2" name="chk"/>
+                <i class="circle2"></i>
+                서비스 이용약관에 동의합니다.
+                <span>(필수)</span>
+              </label>
+            </div>
+
+            <div class="agree-item">
+              <label for="agree3" class="check-label">
+                <input type="checkbox" id="agree3" name="chk"/>
+                <i class="circle3"></i>
+                개인정보 수집/이용에 동의합니다.
+                <span>(필수)</span>
+              </label>
+            </div>
+
+            <div class="agree-item">
+              <label for="agree4" class="check-label">
+                <input type="checkbox" id="agree4" name="chk"/>
+                <i class="circle4"></i>
+                개인정보 제3자 제공에 동의합니다.
+                <span>(필수)</span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div id="agree-alert" class="check-alert" style="font-size: 13px; color: red"></div>
+
+        <!-- 가입버튼 -->
+        <button
+                type="submit"
+                class="join-btn"
+                id="commit-btn"
+                name="join-button"
+        >
+          <span class="join-btn-text">버튼만 누르면 가입 완료!</span>
+        </button>
+      </form>
+      <div id="joinOK" style="display: none"></div>
+    </div>
+    <!-- 사이트 설명 -->
+    <p class="site-explain">
+      스프링드림은 회원님의 원활한 서비스 이용에 필요한 정보를
+      <br/>
+      적절한 전자적 수단을 통해 제공하고 있습니다.
+    </p>
+  </div>
+</div>
+</body>
+<script
+        type="text/javascript"
+        src="https://code.jquery.com/jquery-3.6.1.js"
+></script>
+<script type="text/javascript" th:src="@{/js/member/join.js}"></script>
+<script src="/js/member/checkId.js"></script>
+<script>
+  var btnAll = $("#agreeAll");
+  var commitbtn = $("#commit-btn");
+
+  $(document).ready(function () {
+    $("#agreeAll").click(function () {
+      if ($("#agreeAll").is(":checked"))
+        $("input[name=chk]").prop("checked", true);
+      else $("input[name=chk]").prop("checked", false);
+
+      if ($("#agreeAll").is(":checked")) {
+        commitbtn.disabled = false;
+        commitbtn.css("background-color", "rgb(255, 212, 0)");
+        commitbtn.css("border-color", "rgb(255, 212, 0)");
+        commitbtn.css("color", "rgb(48, 52, 65)");
+        commitbtn.css("cursor", "pointer");
+      } else {
+        commitbtn.disabled = true;
+        commitbtn.css("background-color", "rgb(228, 229, 237)");
+        commitbtn.css("border-color", "rgb(228, 229, 237)");
+        commitbtn.css("color", "rgb(154, 155, 167)");
+      }
+    });
+
+    $("input[name=chk]").click(function () {
+      var total = $("input[name=chk]").length;
+      var checked = $("input[name=chk]:checked").length;
+
+      if (total != checked) btnAll.prop("checked", false);
+      else btnAll.prop("checked", true);
+
+      if ($("#agreeAll").is(":checked")) {
+        commitbtn.disabled = false;
+        commitbtn.css("background-color", "rgb(255, 212, 0)");
+        commitbtn.css("border-color", "rgb(255, 212, 0)");
+        commitbtn.css("color", "rgb(48, 52, 65)");
+        commitbtn.css("cursor", "pointer");
+        commitbtn.hover.css("filter", "brightness(50%)");
+      } else {
+        commitbtn.disabled = true;
+        commitbtn.css("background-color", "rgb(228, 229, 237)");
+        commitbtn.css("border-color", "rgb(228, 229, 237)");
+        commitbtn.css("color", "rgb(154, 155, 167)");
+      }
+    });
+
+    // 버튼 클릭시 빈 곳 표시
+    $(".join-btn").click(function (event) {
+      if ($("#name-check").val() == "") {
+        event.preventDefault();
+        $("#name-alert").html("이름을 입력해주세요");
+        $("#name-alert").css("color", "red");
+      } else {
+        $("#name-alert").html("");
+      }
+
+      if ($("#nick-check").val() == "") {
+        event.preventDefault();
+        $("#nick-alert").html("닉네임을 입력해주세요");
+        $("#nick-alert").css("color", "red");
+      } else {
+        $("#nick-alert").html("");
+      }
+
+      if ($("#id-check").val() == "") {
+        event.preventDefault();
+        $("#id-alert").html("아이디를 입력해주세요");
+        $("#id-alert").css("color", "red");
+      } else {
+        $("#id-alert").html("");
+      }
+
+      if ($("#pw-check").val() == "") {
+        event.preventDefault();
+        $("#pw-alert").html("비밀번호를 입력해주세요");
+        $("#pw-alert").css("color", "red");
+      } else {
+        $("#pw-alert").html("");
+      }
+
+      if ($("#mail-check").val() == "") {
+        event.preventDefault();
+        $("#mail-alert").html("이메일을 입력해주세요");
+      } else {
+        $("#mail-alert").html("");
+      }
+
+      if ($("#phone-check").val() == "") {
+        event.preventDefault();
+        $("#phone-alert").html("휴대폰 번호를 입력해주세요");
+        $("#phone-alert").css("color", "red");
+      } else {
+        $("#phone-alert").html("");
+      }
+
+      if ($("#agreeAll").is(":checked") == false) {
+        event.preventDefault();
+        $("#agree-alert").html("* 약관에 동의해주세요.");
+        $("#agree-alert").css("color", "red");
+      } else {
+        $("#agree-alert").html("");
+      }
+    });
+
+    // 비밀번호 다를시 표시
+    $("#pw2-check").blur(function () {
+      if ($("#pw-check").val() != $("#pw2-check").val()) {
+        $("#pw2-alert").html("비밀번호가 서로 다릅니다");
+        $("#pw2-alert").css("color", "red");
+      } else {
+        $("#pw2-alert").html("");
+      }
+    });
+  });
+</script>
+</html>

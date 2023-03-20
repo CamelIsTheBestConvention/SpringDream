@@ -1,0 +1,434 @@
+/* 기본 세팅 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    /* font-family: "Nanum Gothic Coding", monospace; */
+    font-family: "Metro Sans";
+}
+
+@font-face {
+    font-family: "Metro Sans";
+    /* src: url("./metro-sans-medium.otf"); */
+    src: url("./metro-sans-bold.otf");
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary{
+    display: block;
+}
+
+body{
+    background-color: rgba(255, 255, 255, 1);
+    color: rgba(102, 102, 102, 1);
+    font-family: 'Metro Sans', -appel-system BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+h1, h2, h3, h4, h5, h6{
+    font-family: 'Metro Sans', -appel-system BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    margin-top: 0;
+}
+
+li{
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+
+ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+p{
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+a{
+    color: rgba(22, 158, 230, 1);
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.custom-breadcrumbs a:link, a:hover, a:visited{
+    color: #666666;
+}
+
+a:link, a:hover, a:visited{
+    color: #666666;
+}
+
+a:hover, a:active, a:focus{
+    text-decoration: none;
+}
+
+/* point css 추가사항 */
+
+* {
+    box-sizing: border-box;
+    word-break: break-all;
+}
+
+body{
+    background: white !important;
+    font-size: 14px;
+    letter-spacing: 0;
+    font-family: 'MetroSans';
+    font-weight: 400;
+    background-color: #fff;
+    color:#4d4d4d;
+    line-height: 1.5438;
+}
+
+.flex, .fl{
+    display: flex;
+}
+
+.margin-top-60{
+    margin-top: 60px !important;
+}
+
+img{
+    vertical-align: middle;
+    border: 0;
+}
+
+input{
+    -webkit-appearance: none !important;
+    line-height: normal;
+}
+
+input, button, select, textarea{
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+button, input, optgroup, select, textarea{
+    color: inherit;
+    font-family: 'MetroSans';
+    margin: 0;
+}
+
+/* input [type='radio']{
+    -webkit-appearance: radio !important;
+} */
+
+input[type="radio"]{
+    -webkit-appearance: radio !important;
+}
+
+[type="radio"]{
+    margin: 4px 0 0;
+    margin-top: 1px;
+    line-height: normal;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+[type="radio"]:checked{
+    background: #ffd400;
+    color: #4d4d4d;
+}
+
+label{
+    display: inline-block;
+    max-width: 100%;
+}
+
+form{
+    display: block;
+    margin-top: 0em;
+}
+
+/* point-charge.html */
+
+.point-charge{
+    max-width: 768px;
+    margin: 0 auto;
+}
+
+.point-charge .content-wrapper{
+    flex: 1;
+    /*margin-bottom: 75px;*/
+}
+
+.point-charge-select-card{
+    color: #303441;
+    margin-bottom: 50px;
+}
+
+.point-charge-select-card-main-title{
+    font-size: 18px;
+    font-weight: 700;
+    color: #303441;
+    margin-bottom: 16px;
+}
+
+.point-charge-select-card .select-card-options-box{
+    outline: 1px solid #e4e5ed;
+}
+
+.point-charge-select-card .select-card-options-box .point-price-select-box{
+    display: flex;
+    flex: 1;
+    padding: 50px 0px;
+    border-bottom: 1px dashed #e4e5ed;
+}
+
+.point-charge-select-card .select-card-options-box .charge-icon{
+    flex: 1 0 auto;
+    margin-left: 24px;
+}
+
+.point-charge-select-card .select-card-options-box .options-main{
+    width: 100%;
+}
+
+.point-charge-select-card .select-card-options-box .select-card-options-label{
+    font-size: 15px !important;
+    font-weight: bold;
+    margin: 0;
+    line-height: 22px;
+}
+
+.point-charge-select-card .select-card-options-box .description-box{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 40px;
+}
+
+.point-charge-select-card .select-card-options-box .select-card-options-description{
+    font-size: 32px !important;
+    font-weight: bold;
+    margin: 0;
+    line-height: 46px;
+}
+
+.point-charge-select-card .select-card-options-box .charge-option-button-list{
+    display: flex;
+    margin-top: 20px;   
+}
+
+.point-charge-select-card .select-card-options-box .charge-option-button{
+    position: relative;
+    width: 120px;
+    height: 50px;
+    border-radius: 4px;
+    background-color: #f2f3f7;
+    color: #555969;
+    margin-right: 20px;
+    border: none;
+}
+
+.point-charge-select-card .select-card-options-box .charge-option-button.selected, .point-charge-select-card .select-card-options-box .charge-option-button:hover{
+    background-color: #fffad1;
+    color: #303441;
+}
+
+.point-charge-select-card .select-card-options-box .charge-option-button-inner{
+    margin: 0px;
+    height: 50px;
+    width: 100% !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hide{
+    display: none !important;
+}
+
+.radio:hover{
+    cursor: pointer;
+}
+
+.radio-label:hover{
+    cursor: pointer;
+}
+
+.radio-body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-right: 5px;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #979797;
+    border-radius: 50%;
+    background-color: #fff;
+    transition: border 0.15s ease-in-out;
+}
+
+input[type="radio"]:checked+.radio-body::after{
+    transform: scale(1, 1);
+}
+
+.radio-body::after{
+    display: inline-block;
+    position: relative;
+    content: " ";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #ffd400;
+    transform: scale(0,0);
+    transition: transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
+}
+
+/* input[type="radio"]:checked{
+    transform: scale(1, 1);
+}
+
+.radio-body:checked{
+    display: inline-block;
+    position: relative;
+    content: " ";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #ffd400;
+    transform: scale(0,0);
+    transition: transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
+} */
+
+::selection{
+    background: #ffd400;
+    color: #4d4d4d;
+}
+
+.point-charge-select-card .select-card-options-box .payment-options-select-box{
+    display: flex;
+    flex: 1;
+    padding: 50px 40px;
+    position: relative;
+}
+
+.point-charge-select-card .select-card-options-box .options-main{
+    width: 100%;
+}
+
+.point-charge-select-card .select-card-options-box .select-card-options-label{
+    font-size: 15px !important;
+    font-weight: bold;
+    margin: 0;
+    line-height: 22px;
+}
+
+.margin-bottom-10{
+    margin-bottom: 10px !important;
+}
+
+.point-charge-select-card .select-card-options-box .payment-radio-button{
+    display: flex;
+    align-items: center;
+    height: 60px;
+    border-radius: 4px;
+    border: solid 1px #e4e5ed;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.point-charge-select-card .select-card-options-box .payment-radio-button li:last-child .radio:last-child{
+    margin-right: 0;
+}
+
+.point-charge-select-card .select-card-options-box .payment-radio-button .radio{
+    margin-right: 85px;
+}
+
+.radio:last-child{
+    margin-bottom: 0px;
+}
+
+.radio{
+    margin-bottom: 5px;
+}
+
+.radio > label{
+    margin: 0px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.radio input[type="radio"]{
+    opacity: 0;
+    z-index: 1;
+    position: absolute;
+}
+
+.point-charge-select-card .select-card-options-box .radio-body{
+    margin-right: 10px;
+}
+
+.radio-text{
+    display: inline-block;
+}
+
+.charge-button-container{
+    margin-top: 50px !important;
+    padding-bottom: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn{
+    width: 270px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border-radius: 4px !important;
+
+}
+
+.btn-yellow{
+    color: #303441;
+    background-color: #ffd400;
+    border-color: #ffd400;
+}
+
+.btn[disabled]{
+    color: #9a9ba7 !important;
+    background-color: #e4e5ed !important;
+    border-color: #e4e5ed !important;
+    opacity: 1 !important;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.point-charge-description-box{
+    background-color: #f7f9fa;
+    padding: 30px;
+}
+
+.description-title{
+    font-size: 15px !important;
+    line-height: 1.6;
+    color: #333;
+    letter-spacing: normal;
+    margin: 0 0 10px 0;
+    display: flex;
+    align-items: center;
+}
+
+.point-charge-description-box .description-list{
+    padding-left: 0;
+    font-size: 14px;
+    line-height: 1.71;
+    letter-spacing: normal;
+    color: #666;
+}
