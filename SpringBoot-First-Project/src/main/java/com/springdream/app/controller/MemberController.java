@@ -50,6 +50,16 @@ public class MemberController {
         return new RedirectView("/member/login");
     }
 
+    // 닉네임 중복검사
+    @PostMapping("/checkNick")
+    @ResponseBody
+    public int checkNick(@RequestBody Map<String, Object> requestBody) {
+        String memberNickname = (String) requestBody.get("memberNickname");
+        return memberService.checkNick(memberNickname);
+    }
+
+
+
     //  아이디 중복검사
     @PostMapping("/checkId")
     @ResponseBody

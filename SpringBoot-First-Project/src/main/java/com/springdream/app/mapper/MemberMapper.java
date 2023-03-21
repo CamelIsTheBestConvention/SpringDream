@@ -41,8 +41,11 @@ public interface MemberMapper {
     // 회원 답글수 조회
 //    public int memberReplyCount(Long memberNumber);
 
-    // 중복체크
+    // 아이디 중복체크
     public int checkId(String memberId);
+
+    // 닉네임 중복체크
+    public int checkNick(String memberNickname);
 
     // 로그인
     public int login(MemberVO memberVO);
