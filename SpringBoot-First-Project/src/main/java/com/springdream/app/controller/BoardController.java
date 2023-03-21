@@ -21,7 +21,7 @@ public class BoardController {
     private final BoardService boardService;
     private final SubjectBoardService subjectBoardService;
 
-    //    게시글 목록
+//    게시글 목록
     @GetMapping("/boardMain")
     public void main(Model model) {
 
@@ -49,18 +49,18 @@ public class BoardController {
         return new RedirectView("/board/boardMain");
     }
 
-    //    게시글 상세보기
+//    게시글 상세보기
     @GetMapping("/page")
     public String read(Long boardNumber, Model model){
-        String category = boardService.show(boardNumber).getBoardCategory();
+       String category = boardService.show(boardNumber).getBoardCategory();
         subjectBoardService.addViewCount(boardNumber);
 //       model.addAttribute("replylist", replyService.showList());
-        model.addAttribute("boardlist", boardService.categoryPost(category));
-        model.addAttribute("board", boardService.show(boardNumber));
-        return "/board/page";
+       model.addAttribute("boardlist", boardService.categoryPost(category));
+       model.addAttribute("board", boardService.show(boardNumber));
+       return "/board/page";
     }
 
-    //    게시글 수정
+//    게시글 수정
     @PostMapping("/update")
     public RedirectView update(BoardDTO boardDTO, RedirectAttributes redirectAttributes){
         boardService.modify(boardDTO);
@@ -68,7 +68,7 @@ public class BoardController {
         return new RedirectView("/board/read");
     }
 
-    //    게시글 삭제
+//    게시글 삭제
     @GetMapping("/delete")
     public RedirectView delete(Long boardNumber){
         boardService.remove(boardNumber);

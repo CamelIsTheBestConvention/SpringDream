@@ -164,28 +164,56 @@
 <script th:src="@{/js/fix/header.js}"></script>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script>
+    function register(data){
+        var html = "";
+        $.each(data, function(index, item) {
+            html += '<article class="article" th:object="${popular}">';
+            html += '<span class="article-img">';
+            html += '<img src="/img/board/test1.png" alt="">';
+            html += '</span>';
+            html += '<div class="article-main">';
+            html += '<a class="bo" href="#" onclick="goToBoardPage(' + item.boardNumber + ')">';
+            html += '<h2 class="article-title">' + item.boardTitle + '</h2>';
+            html += '</a>';
+            html += '<div class="article-contents">' + item.boardContent + '</div>';
+            html += '<div class="article-category">';
+            html += '<div class="category">';
+            html += '<div class="selected-category">' + item.boardCategory + '</div>';
+            html += '<div class="selected-category">' + item.boardReward + 'p</div>';
+            html += '<div class="selected-category">' + '조회수 : ' + item.boardViewcount + '</div>';
+            html += '</div>';
+            html += '</div>';
+            html += '</div>';
+            html += '<div class="article-user-info">';
+            html += '<div class="user-info">';
+            html += '<div class="info">';
+            html += '<img src="/img/board/user_info_icon.png" alt="" class="info-img">';
+            html += '<p class="info-text">' + item.memberName + '</p>';
+            html += '</div>';
+            html += '</div>';
+            html += '<div class="user-info">';
+            html += '<div class="info">';
+            html += '<img src="/img/board/reward_icon.png" alt="" class="info-img">';
+            html += '<p class="info-text">' + item.memberRank + '</p>';
+            html += '</div>';
+            html += '</div>';
+            html += '<div class="user-info">';
+            html += '<div class="info">';
+            html += '<img src="/img/board/date_icon.png" alt="" class="info-img">';
+            html += '<p class="info-text">' + item.boardUpdateDate + '</p>';
+            html += '</div>';
+            html += '</div>';
+            html += '</div>';
+            html += '</article>';
+        });
 
-    // var $cat = $(".subject").val();
-    //
-    // $("$cat").on("change", function() {
-    //     $.ajax({
-    //         url: "/board/boardMain",
-    //         type: "GET",
-    //         contentType: "text/html, charset= UTF-8",
-    //         data: {boardCategory: "$cat"},
-    //         dataType: "json"
-    //     });
-    // });
-    //
-    // $("#math").on("change", function() {
-    //     $.ajax({
-    //         url: "/board/boardMain",
-    //         type: "GET",
-    //         contentType: "text/html, charset= UTF-8",
-    //         data: {boardCategory: "$cat"},
-    //         dataType: "json"
-    //     });
-    // });
+        $('.article-list').empty();
+        $('.article-list').append(html);
+    }
+
+    function goToBoardPage(boardNumber) {
+        window.location.href = "/board/page?boardNumber=" + boardNumber;
+    }
 
     // 인기글
     $("button.interest").on("click", function(e){
@@ -202,38 +230,136 @@
     // 국어
     $("button.korean").on("click", function(e){
         e.preventDefault();
-        location.href = "/board/korean";
+        var kind = '국어';       //버튼이 클릭 되었을 시, 개별 버튼의 값이 kind 변수에 담겨집니다.
+
+        $.ajax({
+            async : false,
+            url : "/board/categoryBy",
+            type : "post",
+            data : {boardCategory : kind},
+            dataType : "json",
+            success : function(data){
+                register(data);
+            },
+            error : function(data){
+                console.log(data);
+            }
+        });
     });
+
     // 수학
     $("button.math").on("click", function(e){
         e.preventDefault();
-        location.href = "/board/math";
+        var kind = '수학';       //버튼이 클릭 되었을 시, 개별 버튼의 값이 kind 변수에 담겨집니다.
+
+        $.ajax({
+            async : false,
+            url : "/board/categoryBy",
+            type : "post",
+            data : {boardCategory : kind},
+            dataType : "json",
+            success : function(data){
+                register(data);
+            },
+            error : function(data){
+                console.log(data);
+            }
+        });
     });
     // 영어
     $("button.english").on("click", function(e){
         e.preventDefault();
-        location.href = "/board/english";
+        var kind = '영어';       //버튼이 클릭 되었을 시, 개별 버튼의 값이 kind 변수에 담겨집니다.
+
+        $.ajax({
+            async : false,
+            url : "/board/categoryBy",
+            type : "post",
+            data : {boardCategory : kind},
+            dataType : "json",
+            success : function(data){
+                register(data);
+            },
+            error : function(data){
+                console.log(data);
+            }
+        });
     });
     // 사탐
     $("button.society").on("click", function(e){
         e.preventDefault();
-        location.href = "/board/society";
+        var kind = '사탐';       //버튼이 클릭 되었을 시, 개별 버튼의 값이 kind 변수에 담겨집니다.
+
+        $.ajax({
+            async : false,
+            url : "/board/categoryBy",
+            type : "post",
+            data : {boardCategory : kind},
+            dataType : "json",
+            success : function(data){
+                register(data);
+            },
+            error : function(data){
+                console.log(data);
+            }
+        });
     });
     // 과탐
     $("button.science").on("click", function(e){
         e.preventDefault();
-        location.href = "/board/science";
+        var kind = '과탐';       //버튼이 클릭 되었을 시, 개별 버튼의 값이 kind 변수에 담겨집니다.
+
+        $.ajax({
+            async : false,
+            url : "/board/categoryBy",
+            type : "post",
+            data : {boardCategory : kind},
+            dataType : "json",
+            success : function(data){
+                register(data);
+            },
+            error : function(data){
+                console.log(data);
+            }
+        });
     });
     // 한국사
     $("button.history").on("click", function(e){
         e.preventDefault();
-        location.href = "/board/history";
+        var kind = '한국사';       //버튼이 클릭 되었을 시, 개별 버튼의 값이 kind 변수에 담겨집니다.
+
+        $.ajax({
+            async : false,
+            url : "/board/categoryBy",
+            type : "post",
+            data : {boardCategory : kind},
+            dataType : "json",
+            success : function(data){
+                register(data);
+            },
+            error : function(data){
+                console.log(data);
+            }
+        });
     });
     // 제2외국어
     $("button.foreign").on("click", function(e){
         e.preventDefault();
-        location.href = "/board/foreign";
-    });
+        var kind = '제2외국어';       //버튼이 클릭 되었을 시, 개별 버튼의 값이 kind 변수에 담겨집니다.
 
+        $.ajax({
+            async : false,
+            url : "/board/categoryBy",
+            type : "post",
+            data : {boardCategory : kind},
+            dataType : "json",
+            success : function(data){
+                register(data);
+            },
+            error : function(data){
+                console.log(data);
+            }
+        });
+    });
 </script>
 </html>
