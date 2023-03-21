@@ -21,154 +21,154 @@
     }
 </style>
 <body>
-<!-- 헤더 -->
-<div th:insert="~{/fix/header :: header}"></div>
-<!-- 메인 -->
-<main>
-    <!-- 배너 -->
-    <section class="main-banner">
-        <div class="banner">
-            <h1 class="banner-text"> 내가 모르는 것을
-                <br>
-                <span>질문해보세요!</span>
-            </h1>
-            <div>
+    <!-- 헤더 -->
+    <div th:insert="~{/fix/header :: header}"></div>
+    <!-- 메인 -->
+    <main>
+        <!-- 배너 -->
+        <section class="main-banner">
+            <div class="banner">
+                <h1 class="banner-text"> 내가 모르는 것을
+                    <br>
+                    <span>질문해보세요!</span>
+                </h1>
+                <div>
                     <span class="banner-img">
                         <img th:src="@{/img/board/file_icon.png}" alt="">
                     </span>
-            </div>
-        </div>
-    </section>
-    <section class="main-body">
-        <!-- 카테고리 -->
-        <div class="main-category">
-            <div class="category-list">
-                <button type="button" class="recent">최신글</button>
-            </div>
-            <div class="category-list selected">
-                <button type="button" class="interest">인기글</button>
-            </div>
-            <div class="category-list">
-                <button type="button" class="korean" value="국어" onclick="btnValue()">국어</button>
-            </div>
-            <div class="category-list">
-                <button type="button" class="math" value="수학">수학</button>
-            </div>
-            <div class="category-list">
-                <button type="button" class="english" value="영어">영어</button>
-            </div>
-            <div class="category-list">
-                <button type="button" class="society" value="사탐">사탐</button>
-            </div>
-            <div class="category-list">
-                <button type="button" class="science" value="과탐">과탐</button>
-            </div>
-            <div class="category-list">
-                <button type="button" class="history" value="한국사">한국사</button>
-            </div>
-            <div class="category-list">
-                <button type="button" class="foreign" value="제2외국어">제2외국어</button>
-            </div>
-        </div>
-        <!-- 메인 헤더 -->
-        <div class="main-header">
-            <div class="main-header-content">
-                총 *건
-            </div>
-        </div>
-
-        <!-- 글 리스트 -->
-        <section class="article-list" >
-            <th:block th:each="popular:${popular}">
-                <!-- 글 -->
-                <article class="article" th:object="${popular}">
-                    <!-- 이미지 -->
-                    <span class="article-img">
-                            <img th:src="@{/img/board/test1.png}" alt="">
-                        </span>
-                    <!-- 글 정보 -->
-                    <div class="article-main">
-                        <a th:href="@{/board/page(boardNumber=*{boardNumber})}">
-                            <h2 class="article-title" th:text="*{boardTitle}"></h2> <!-- 글 제목 -->
-                        </a>
-                        <div class="article-contents" th:text="*{boardContent}"></div>
-                        <!-- 글 내용 -->
-                        <div class="article-category">
-                            <div class="category">
-                                <div class="selected-category" th:text="*{boardCategory}"></div>  <!-- 선택된 카테고리 -->
-                                <div class="selected-category" th:text="*{boardReward} + 'p'"></div>
-                                <div class="selected-category" th:text="'조회수 : ' + *{boardViewcount}"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 글 작성자 정보 -->
-                    <div class="article-user-info">
-                        <div class="user-info">
-                            <div class="info">
-                                <img th:src="@{/img/board/user_info_icon.png}" alt="" class="info-img">
-                                <p class="info-text" th:text="*{memberName}"></p>   <!-- 유저네임 -->
-                            </div>
-                        </div>
-                        <div class="user-info">
-                            <div class="info">
-                                <img th:src="@{/img/board/reward_icon.png}" alt="" class="info-img">
-                                <p class="info-text" th:text="*{memberRank}"></p> <!-- 유저등급 -->
-                            </div>
-                        </div>
-                        <div class="user-info">
-                            <div class="info">
-                                <img th:src="@{/img/board/date_icon.png}" alt="" class="info-img">
-                                <p class="info-text" th:text="*{boardUpdateDate}"></p>    <!-- 게시글 날짜 -->
-                            </div>
-                        </div>
-                    </div>
-                </article>
-            </th:block>
-
-            <!-- 메인 푸터 -->
-            <div class="main-footer">
-                <ul class="page-list">
-                    <li class="page">
-                        <button class="page-button">
-                            <span class="page-num"> < </span>
-                        </button>
-                    </li>
-                    <li class="page">
-                        <button class="page-button selected">
-                            <span class="page-num"> 1 </span>
-                        </button>
-                    </li>
-                    <li class="page">
-                        <button class="page-button">
-                            <span class="page-num"> 2 </span>
-                        </button>
-                    </li>
-                    <li class="page">
-                        <button class="page-button">
-                            <span class="page-num"> 3 </span>
-                        </button>
-                    </li>
-                    <li class="page">
-                        <button class="page-button">
-                            <span class="page-num"> > </span>
-                        </button>
-                    </li>
-                </ul>
+                </div>
             </div>
         </section>
-    </section>
-</main>
-<!-- 푸터 -->
-<div th:insert="~{/fix/footer :: footer}"></div>
+        <section class="main-body">
+            <!-- 카테고리 -->
+            <div class="main-category">
+                <div class="category-list">
+                    <button type="button" class="recent">최신글</button>
+                </div>
+                <div class="category-list selected">
+                    <button type="button" class="interest">인기글</button>
+                </div>
+                <div class="category-list">
+                    <button type="button" class="korean" value="국어">국어</button>
+                </div>
+                <div class="category-list">
+                    <button type="button" class="math" value="수학">수학</button>
+                </div>
+                <div class="category-list">
+                    <button type="button" class="english" value="영어">영어</button>
+                </div>
+                <div class="category-list">
+                    <button type="button"  class="society" value="사탐">사탐</button>
+                </div>
+                <div class="category-list">
+                    <button type="button" class="science" value="과탐">과탐</button>
+                </div>
+                <div class="category-list">
+                    <button type="button" class="history" value="한국사">한국사</button>
+                </div>
+                <div class="category-list">
+                    <button type="button" class="foreign" value="제2외국어">제2외국어</button>
+                </div>
+            </div>
+            <!-- 메인 헤더 -->
+            <div class="main-header">
+                <div class="main-header-content">
+                    총 *건
+                </div>
+            </div>
+
+            <!-- 글 리스트 -->
+            <section class="article-list" >
+                <th:block th:each="popular:${popular}">
+                    <!-- 글 -->
+                    <article class="article" th:object="${popular}">
+                        <!-- 이미지 -->
+                        <span class="article-img">
+                            <img th:src="@{/img/board/test1.png}" alt="">
+                        </span>
+                        <!-- 글 정보 -->
+                        <div class="article-main">
+                            <a th:href="@{/board/page(boardNumber=*{boardNumber})}">
+                                <h2 class="article-title" th:text="*{boardTitle}"></h2> <!-- 글 제목 -->
+                            </a>
+                            <div class="article-contents" th:text="*{boardContent}"></div>
+                            <!-- 글 내용 -->
+                            <div class="article-category">
+                                <div class="category">
+                                    <div class="selected-category" th:text="*{boardCategory}"></div>  <!-- 선택된 카테고리 -->
+                                    <div class="selected-category" th:text="*{boardReward} + 'p'"></div>
+                                    <div class="selected-category" th:text="'조회수 : ' + *{boardViewcount}"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 글 작성자 정보 -->
+                        <div class="article-user-info">
+                            <div class="user-info">
+                                <div class="info">
+                                    <img th:src="@{/img/board/user_info_icon.png}" alt="" class="info-img">
+                                    <p class="info-text" th:text="*{memberName}"></p>   <!-- 유저네임 -->
+                                </div>
+                            </div>
+                            <div class="user-info">
+                                <div class="info">
+                                    <img th:src="@{/img/board/reward_icon.png}" alt="" class="info-img">
+                                    <p class="info-text" th:text="*{memberRank}"></p> <!-- 유저등급 -->
+                                </div>
+                            </div>
+                            <div class="user-info">
+                                <div class="info">
+                                    <img th:src="@{/img/board/date_icon.png}" alt="" class="info-img">
+                                    <p class="info-text" th:text="*{boardUpdateDate}"></p>    <!-- 게시글 날짜 -->
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </th:block>
+
+                <!-- 메인 푸터 -->
+                <div class="main-footer">
+                    <ul class="page-list">
+                        <li class="page">
+                            <button class="page-button">
+                                <span class="page-num"> < </span>
+                            </button>
+                        </li>
+                        <li class="page">
+                            <button class="page-button selected">
+                                <span class="page-num"> 1 </span>
+                            </button>
+                        </li>
+                        <li class="page">
+                            <button class="page-button">
+                                <span class="page-num"> 2 </span>
+                            </button>
+                        </li>
+                        <li class="page">
+                            <button class="page-button">
+                                <span class="page-num"> 3 </span>
+                            </button>
+                        </li>
+                        <li class="page">
+                            <button class="page-button">
+                                <span class="page-num"> > </span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </section>
+    </main>
+    <!-- 푸터 -->
+    <div th:insert="~{/fix/footer :: footer}"></div>
 </body>
 <script th:src="@{/js/fix/header.js}"></script>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script>
-    function btnValue () {
-        var btnvalue = this.valueOf();
-        console.log(btnvalue);
-    }
-
+    $("article").on("click", function(e) {
+        e.preventDefault();
+        var boardNumber = $(this).data("boardnumber");
+        window.location.href = "/board/page?boardNumber=" + boardNumber;
+    });
     function register(data){
         var html = "";
         $.each(data, function(index, item) {
@@ -177,7 +177,7 @@
             html += '<img src="/img/board/test1.png" alt="">';
             html += '</span>';
             html += '<div class="article-main">';
-            html += '<a href="/board/page(boardNumber=' + item.boardNumber + ')">';
+            html += '<a class="bo" href="#" onclick="goToBoardPage(' + item.boardNumber + ')">';
             html += '<h2 class="article-title">' + item.boardTitle + '</h2>';
             html += '</a>';
             html += '<div class="article-contents">' + item.boardContent + '</div>';
@@ -215,27 +215,10 @@
         $('.article-list').empty();
         $('.article-list').append(html);
     }
-    // var $cat = $(".subject").val();
-    //
-    // $("$cat").on("change", function() {
-    //     $.ajax({
-    //         url: "/board/boardMain",
-    //         type: "GET",
-    //         contentType: "text/html, charset= UTF-8",
-    //         data: {boardCategory: "$cat"},
-    //         dataType: "json"
-    //     });
-    // });
-    //
-    // $("#math").on("change", function() {
-    //     $.ajax({
-    //         url: "/board/boardMain",
-    //         type: "GET",
-    //         contentType: "text/html, charset= UTF-8",
-    //         data: {boardCategory: "$cat"},
-    //         dataType: "json"
-    //     });
-    // });
+
+    function goToBoardPage(boardNumber) {
+        window.location.href = "/board/page?boardNumber=" + boardNumber;
+    }
 
     // 인기글
     $("button.interest").on("click", function(e){
@@ -310,23 +293,78 @@
     // 사탐
     $("button.society").on("click", function(e){
         e.preventDefault();
-        location.href = "/board/society";
+        var kind = '사탐';       //버튼이 클릭 되었을 시, 개별 버튼의 값이 kind 변수에 담겨집니다.
+
+        $.ajax({
+            async : false,
+            url : "/board/categoryBy",
+            type : "post",
+            data : {boardCategory : kind},
+            dataType : "json",
+            success : function(data){
+                register(data);
+            },
+            error : function(data){
+                console.log(data);
+            }
+        });
     });
     // 과탐
     $("button.science").on("click", function(e){
         e.preventDefault();
-        location.href = "/board/science";
+        var kind = '과탐';       //버튼이 클릭 되었을 시, 개별 버튼의 값이 kind 변수에 담겨집니다.
+
+        $.ajax({
+            async : false,
+            url : "/board/categoryBy",
+            type : "post",
+            data : {boardCategory : kind},
+            dataType : "json",
+            success : function(data){
+                register(data);
+            },
+            error : function(data){
+                console.log(data);
+            }
+        });
     });
     // 한국사
     $("button.history").on("click", function(e){
         e.preventDefault();
-        location.href = "/board/history";
+        var kind = '한국사';       //버튼이 클릭 되었을 시, 개별 버튼의 값이 kind 변수에 담겨집니다.
+
+        $.ajax({
+            async : false,
+            url : "/board/categoryBy",
+            type : "post",
+            data : {boardCategory : kind},
+            dataType : "json",
+            success : function(data){
+                register(data);
+            },
+            error : function(data){
+                console.log(data);
+            }
+        });
     });
     // 제2외국어
     $("button.foreign").on("click", function(e){
         e.preventDefault();
-        location.href = "/board/foreign";
-    });
+        var kind = '제2외국어';       //버튼이 클릭 되었을 시, 개별 버튼의 값이 kind 변수에 담겨집니다.
 
+        $.ajax({
+            async : false,
+            url : "/board/categoryBy",
+            type : "post",
+            data : {boardCategory : kind},
+            dataType : "json",
+            success : function(data){
+                register(data);
+            },
+            error : function(data){
+                console.log(data);
+            }
+        });
+    });
 </script>
 </html>
