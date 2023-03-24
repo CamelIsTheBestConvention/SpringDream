@@ -1,7 +1,3 @@
-/*
-* redis 설치 후 서버를 실행해야 가능
-*
-* */
 package com.springdream.app.service;
 
 import lombok.RequiredArgsConstructor;
