@@ -61,8 +61,12 @@ public class MemberDAO {
     public int login(MemberVO memberVO) {return memberMapper.login(memberVO);}
 
     //    로그아웃
-    public void logout(HttpSession session) {
+    public void logout(HttpSession session) {}
 
-    }
+    // 아이디 찾기
+    public String findId(String memberName, String memberMobile){ return memberMapper.selectId(memberName, memberMobile);};
+
+    // 비밀번호 찾기
+    public String findPw(String memberId, String memberMobile){ return memberMapper.selectPw(memberId, memberMobile);};
 
 }
