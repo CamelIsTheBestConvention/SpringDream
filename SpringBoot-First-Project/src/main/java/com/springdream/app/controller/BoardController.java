@@ -3,6 +3,8 @@ package com.springdream.app.controller;
 import com.springdream.app.domain.BoardDTO;
 import com.springdream.app.domain.BoardVO;
 import com.springdream.app.service.BoardService;
+import com.springdream.app.service.MainSearchService;
+import com.springdream.app.service.MainService;
 import com.springdream.app.service.SubjectBoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -20,13 +22,21 @@ import java.util.List;
 public class BoardController {
     private final BoardService boardService;
     private final SubjectBoardService subjectBoardService;
+    private final MainService mainService;
 
 //    게시글 목록
     @GetMapping("/boardMain")
-    public void main(Model model) {
-
-        model.addAttribute("boardCount", boardService.recentPost().size());
-        model.addAttribute("boards", boardService.recentPost());
+    public void main(Model model, @RequestParam(name = "keyword", required = false) String keyword) {
+        System.out.println("keyword: " + keyword);
+        if(keyword!=null || keyword!="") {
+            model.addAttribute("keyword", keyword);
+            model.addAttribute("boardCount", mainService.showByKeywordAll(keyword).size());
+            model.addAttribute("boards", mainService.showByKeywordAll(keyword));
+        }
+        else {
+            model.addAttribute("boardCount", boardService.recentPost().size());
+            model.addAttribute("boards", boardService.recentPost());
+        }
     }
 
     //    게시글 등록
@@ -98,5 +108,6 @@ public class BoardController {
     public List<BoardDTO> category(@RequestParam String boardCategory) {
         return boardService.categoryPost(boardCategory);
     }
+
 
 }

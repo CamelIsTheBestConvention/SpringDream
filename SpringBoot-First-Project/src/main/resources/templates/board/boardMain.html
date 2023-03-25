@@ -72,6 +72,7 @@
             </div>
             <!-- 메인 헤더 -->
             <div class="main-header">
+                <div class="main-header-content" th:text="${keyword != null and keyword != ''} ? '검색어 ' + ${keyword}:''"></div>
                 <div class="main-header-content" th:text="'총 ' + ${boardCount} + ' 건'"></div>
             </div>
 
