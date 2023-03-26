@@ -1,5 +1,6 @@
 let headerInput = document.querySelector(".css-input");
 let inputWrapper = document.querySelector("#inputWrapper");
+let input = document.querySelector("#input");
 
 // const buttonPayment = document.querySelector(".button-payment");
 // const buttonMypage = document.querySelector(".button-mypage");
@@ -17,6 +18,11 @@ headerInput.addEventListener('focusout', function(){
     inputWrapper.style.width = '65%';
     inputWrapper.style.borderColor = 'transparent';
 });
+
+if (input.classList.contains("highlight")) {
+    inputWrapper.style.width = "90%";
+    inputWrapper.style.borderColor = "#2e2e2e";
+}
 
 // const checkL = (e) =>{  //checkL 이름 바꾸기
 //     //로그인 되었을때 payment, mypage, logout, write 보이기 login, join 숨기기

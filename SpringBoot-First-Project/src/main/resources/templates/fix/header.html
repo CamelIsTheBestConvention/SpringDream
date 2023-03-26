@@ -17,15 +17,15 @@
             </a>
             <div style="flex-grow: 1;"></div>
             <!-- 검색바 -->
-            <form action="/main/searchResult" class="css-search" th:method="get">
+            <form action="/board/boardMain" class="css-search" th:method="get">
                 <div class="css-input-wrapper" id="inputWrapper">
                     <input class="css-input" id="input" name="keyword"
                            placeholder="검색어를 입력해보세요" maxlength="15"
                            autocomplete="off" autocorrect="off"
-                           autocapitalize="off" type="text">
+                           autocapitalize="off" type="text" th:value="${keyword}" th:classappend="${keyword != null and keyword != ''} ? 'highlight' : ''">
                     <div class="suffix-wrapper">
                     <span role="img" rotate="0" class="css-aah4od e181xm9y1" style="cursor: pointer"
-                          th:onclick="|location.href='@{/main/searchResult}'|">
+                          th:onclick="|location.href=`@{/board/boardMain}`|">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"
                              focusable="false" preserveAspectRatio="xMidYMid meet" class="css-7kp13n e181xm9y0">
                             <path xmlns="http://www.w3.org/2000/svg"

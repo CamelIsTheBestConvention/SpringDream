@@ -37,4 +37,10 @@ public interface MemberService {
 
     //    로그아웃
     public void logout(HttpSession session);
+
+    // 아이디 찾기
+    public String findId(String memberName, String memberMobile);
+
+    // 비밀번호 찾기
+    public String findPw(String memberId, String memberMobile);
 }

@@ -50,4 +50,10 @@ public interface MemberMapper {
     // 로그인
     public int login(MemberVO memberVO);
 
+    // 아이디 찾기
+    public String selectId(String memberName, String memberMobile);
+
+    // 비밀번호 찾기
+    public String selectPw(String memberId, String memberMobile);
+
 }

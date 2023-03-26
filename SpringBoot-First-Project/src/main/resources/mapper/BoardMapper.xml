@@ -154,7 +154,7 @@
         FROM TBL_DREAM_BOARD b
         INNER JOIN TBL_DREAM_MEMBER m
         ON b.MEMBER_NUMBER = m.MEMBER_NUMBER
-        WHERE b.BOARD_TITLE LIKE '%'||#{keyword}||'%' OR b.BOARD_CONTENT LIKE '%'||#{keyword}||'%'
+        WHERE b.BOARD_TITLE LIKE '%'||#{keyword}||'%' OR b.BOARD_CONTENT LIKE '%'||#{keyword}||'%' OR m.MEMBER_NAME LIKE '%'||#{keyword}||'%'
     </select>
 </mapper>
 

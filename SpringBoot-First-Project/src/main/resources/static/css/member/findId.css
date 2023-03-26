@@ -216,7 +216,7 @@ small {
   color: #888;
 }
 
-input.id-btn {
+input.id-btn, input.pw-btn, input[type=button] {
   width: 100%;
   cursor: pointer;
   border-radius: 4px !important;
@@ -238,7 +238,7 @@ input.id-btn {
   user-select: none;
 }
 
-input.pw-btn {
+/*input.pw-btn {
   width: 100%;
   cursor: pointer;
   border-radius: 4px !important;
@@ -252,13 +252,13 @@ input.pw-btn {
   margin-bottom: 0;
   font-weight: bold;
   text-align: center;
-  /* vertical-align: middle; */
+  !* vertical-align: middle; *!
   touch-action: manipulation;
   background-image: none;
   border: 1px solid transparent;
   white-space: nowrap;
   user-select: none;
-}
+}*/
 
 /* 로그인 회원가입 */
 .page-move {
@@ -302,7 +302,6 @@ input.pw-btn {
 
 .modal_content {
   width: 400px;
-  height: 200px;
   background: #fff;
   border-radius: 10px;
   position: relative;
@@ -312,22 +311,40 @@ input.pw-btn {
   margin-left: -200px;
   text-align: center;
   box-sizing: border-box;
-  padding: 74px 0;
   line-height: 23px;
   cursor: pointer;
 }
+/*height: 200px;*/
+/*padding: 74px 0;*/
+
+.modal-panel{
+  border-color: #e6e6e6 !important;
+  background-color: #fff;
+  border-radius: 5px;
+}
 
 .modal-space {
-  margin-top: -94px;
-  border-radius: 10px;
+  color: #4d4d4d;
+  font-weight: 700;
+  background-color: #e8e8e8;
+  border-color: #e6e6e6;
+  padding: 10px 12px;
+  border-bottom: 1px solid transparent;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
 }
+/*margin-top: -94px;*/
+/*border-radius: 10px;*/
 
 .find-content {
+  height: 83px;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   font-size: 19px;
 }
+/*flex-direction: column;*/
 
-.find-content span {
+/*.find-content span {
   margin: 13px 0;
-}
+}*/

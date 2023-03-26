@@ -74,10 +74,17 @@
 
                 <!-- 찾기 버튼 -->
                 <input
+                        type="button"
+                        class="verify-btn margin-top-5"
+                        id="verify-btn-id"
+                        value="본인인증 하기"
+                />
+                <input
                         type="submit"
                         class="id-btn margin-top-5"
                         id="modal-id"
                         value="아이디 찾기"
+                        style="display: none"
                 />
               </div>
             </form>
@@ -96,6 +103,7 @@
                   <input
                           type="text"
                           id="fullId"
+                          name="memberId"
                           class="form-control pw-find-modal"
                           placeholder="아이디"
                           required
@@ -106,6 +114,7 @@
                   <input
                           type="text"
                           id="text"
+                          name="memberMobile"
                           class="form-control pw-find-modal"
                           placeholder="휴대폰 번호"
                           required
@@ -121,9 +130,16 @@
 
                 <!-- 찾기 버튼 -->
                 <input
+                        type="button"
+                        class="verify-btn margin-top-5"
+                        id="verify-btn-pw"
+                        value="본인인증 하기"
+                />
+                <input
                         type="submit"
                         class="pw-btn margin-top-5"
                         id="modal-pw"
+                        style="display: none"
                         value="비밀번호 찾기"
                 />
               </div>
@@ -171,12 +187,10 @@
 <div class="modal id-modal">
   <div class="modal_content" title="클릭하면 창이 닫힙니다.">
     <!-- 내용 -->
-    <div class="panel">
+    <div class="modal-panel">
       <div class="panel-heading modal-space">가입된 아이디</div>
       <div class="find-content">
-        <span>msj1234</span>
-        <span>msj1234</span>
-        <span>msj1234</span>
+        <span class="findIdPw"></span>
       </div>
     </div>
   </div>
@@ -189,10 +203,22 @@
     <div class="panel">
       <div class="panel-heading modal-space">확인된 비밀번호</div>
       <div class="find-content">
-        <span>moon1541</span>
-        <span>moon1541</span>
-        <span>moon1541</span>
+        <span class="findIdPw"></span>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- 모달 본인인증 -->
+<div class="modal verify-modal">
+  <div class="modal_content" title="클릭하면 창이 닫힙니다.">
+    <!-- 내용 -->
+    <div class="panel">
+      <div class="panel-heading modal-space">본인인증</div>
+      <div class="find-content">
+        <input type="text" id="verifyNumber" class="form-control pw-find-modal" placeholder="인증번호" required />
+      </div>
+      <input type="button" class="modal-verify-btn margin-top-5" id="modal-v" value="본인인증 확인" />
     </div>
   </div>
 </div>
@@ -200,6 +226,11 @@
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="/js/fix/header.js"></script>
 <script>
+  var authNumber;
+  let globalIdPw;
+  let globalidpw;
+  let findIdPw;
+
   // 아이디 찾기 버튼
   $(function () {
     $("#modal-id").click(function () {
@@ -223,6 +254,23 @@
   });
 
   // 입력해야 버튼 활성화
+  // 아이디 본인인증
+  $(document).ready(function () {
+    $("#verify-btn-id").click(function (event) {
+      if ($(".id-find-modal").val() == "") {
+        event.preventDefault();
+        alert("이름과 휴대폰번호를 입력해주세요.");
+        $(".id-modal").hide();
+      } else {
+        // 인증번호 발송 메소드 들어갈 자리
+        let memberName = $("input[name=memberName]").val();
+        let memberMobile = $("input[name=memberMobile]").val();
+        checkInputs(memberName, memberMobile, "Id", "id");
+        // $(".verify-modal").fadeIn();
+      }
+    });
+  });
+
   // 아이디
   $(document).ready(function () {
     $(".id-btn").click(function (event) {
@@ -230,6 +278,24 @@
         event.preventDefault();
         alert("이름과 휴대폰번호를 입력해주세요.");
         $(".id-modal").hide();
+      }
+    });
+  });
+
+  // 비밀번호 본인인증
+  $(document).ready(function () {
+    $("#verify-btn-pw").click(function (event) {
+      if ($(".pw-find-modal").val() == "") {
+        event.preventDefault();
+        alert("아이디와 휴대폰번호를 입력해주세요.");
+        $(".pw-modal").hide();
+      } else {
+        // 인증번호 발송 메소드 들어갈 자리
+        let memberId = $("input[name=memberId]").val();
+        let memberMobile = $("input[name=memberMobile]").eq(1).val();
+        // memberMobile = memberMobile[1].value();
+        checkInputs(memberId, memberMobile, "Pw", "pw");
+        // $(".verify-modal").fadeIn();
       }
     });
   });
@@ -244,5 +310,76 @@
       }
     });
   });
+
+
+
+  // 입력값 확인
+  function checkInputs(firstInput, secondInput, IdPw, idpw) {
+    console.log("들어옴: " + firstInput, secondInput);
+    globalIdPw = IdPw;
+    globalidpw = idpw;
+
+      $.ajax({
+        url: "/member/find" + IdPw,
+        type: "POST",
+        data: JSON.stringify({firstInput: firstInput, secondInput: secondInput}),/*, {memberMobile: memberMobile}),*/
+        contentType: "application/json; charset=utf-8",
+        success: function (data, textStatus, jqXHR) { /*(textStatus, jqXHR)을 매개변수로 작성시, (secondInput, IdPw)을 갖고 갈 수 있음*/
+          if(data!="") {
+            findIdPw = data;
+            sendSMS(secondInput, IdPw);
+          } else{
+            alert("정확하게 다시 입력해주세요.");
+            $(".id-modal").hide();
+          }
+        }
+      })
+  }
+
+  // 인증문자 보내기
+  function sendSMS(memberMobile, IdPw) {
+    console.log("sendSMS: " + memberMobile, IdPw);
+    $.ajax({
+      url: "/member/sendSMS",
+      type: "POST",
+      data: JSON.stringify({memberMobile: memberMobile}),
+      contentType: "application/json; charset=utf-8",
+      success: function (data) {
+        authNumber = data;
+        console.log("authNumber:" + authNumber);
+        $(".verify-modal").fadeIn();
+      }
+    })
+  }
+
+    // 본인인증 확인 버튼 클릭
+    $(".modal-verify-btn").click(function () {
+      let verifyNumber = $("#verifyNumber").val();
+      console.log("verify: " + verifyNumber, globalidpw);
+
+      $.ajax({
+        url: "/member/verifyNumber",
+        type: "POST",
+        data: JSON.stringify({authNumber: authNumber, verifyNumber: verifyNumber}),
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+          console.log("data:" + data);
+          if (data) {
+            $(".verify-modal").fadeOut();
+
+            $("." + globalidpw + "-modal").fadeIn();
+            $(".findIdPw").html(findIdPw);
+
+            $(".modal_content").click(function () {
+              $("." + globalidpw + "-modal").fadeOut();
+            });
+          } else {
+            alert("다시 입력해주세요.");
+          }
+        }
+      })
+    })
+
+
 </script>
 </html>

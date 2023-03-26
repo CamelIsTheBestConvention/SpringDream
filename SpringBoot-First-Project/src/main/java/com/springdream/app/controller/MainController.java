@@ -23,8 +23,6 @@ import java.util.List;
 public class MainController {
     private final RankingService rankingService;
 
-    private MainService mainService;
-
     @GetMapping("index")
     public String index(@CookieValue(name = "memberNumber", required = false) String memberNumber , Model model, HttpServletRequest request){
 
@@ -37,16 +35,6 @@ public class MainController {
         model.addAttribute("points", points);
 
         return "main/index";
-    }
-
-    @GetMapping("searchResult")
-    public String search(@RequestParam(value = "keyword") String keyword, Model model){
-        List<BoardDTO> boardDTOList = mainService.showByKeywordAll(keyword);
-        model.addAttribute("keyword", keyword);
-        model.addAttribute("boardCount", mainService.showByKeywordAll(keyword).size());
-        model.addAttribute("boardList", boardDTOList);
-
-        return "fix/searchResult";
     }
 
 }

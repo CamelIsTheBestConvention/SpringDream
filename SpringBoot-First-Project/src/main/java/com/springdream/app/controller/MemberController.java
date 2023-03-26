@@ -26,6 +26,7 @@ public class MemberController {
     private final MypageBoardService boardService;
     private final MypageReplyService replyService;
     private final PointService pointService;
+    private final CoolSmsService coolSmsService;
 
 
     //    회원가입
@@ -57,8 +58,6 @@ public class MemberController {
         String memberNickname = (String) requestBody.get("memberNickname");
         return memberService.checkNick(memberNickname);
     }
-
-
 
     //  아이디 중복검사
     @PostMapping("/checkId")
@@ -114,8 +113,41 @@ public class MemberController {
     public String findId() { return "member/findId"; }
 
     @PostMapping("/findId")
-    public String findId(String memberName, String memberMobile){
-        return "member/findId";
+    @ResponseBody
+    public String findId(@RequestBody Map<String, Object> requestBody) {
+        System.out.println("console");
+        String memberName = (String) requestBody.get("firstInput");
+        String memberMobile = (String) requestBody.get("secondInput");
+        return memberService.findId(memberName, memberMobile);
+    }
+
+    @PostMapping("/findPw")
+    @ResponseBody
+    public String findPw(@RequestBody Map<String, Object> requestBody) {
+        System.out.println("console");
+        String memberId = (String) requestBody.get("firstInput");
+        String memberMobile = (String) requestBody.get("secondInput");
+        return memberService.findPw(memberId, memberMobile);
+    }
+
+    // 인증번호 발송
+    @PostMapping("/sendSMS")
+    @ResponseBody
+    public String sendSMS(@RequestBody Map<String, Object> requestBody) {
+        System.out.println("controller");
+        String memberMobile = (String) requestBody.get("memberMobile");
+        String authNumber = coolSmsService.sendAuthNumber(memberMobile);
+        return authNumber;
+    }
+
+    // 인증번호 확인
+    @PostMapping("/verifyNumber")
+    @ResponseBody
+    public boolean verifyNumber(@RequestBody Map<String, Object> requestBody) {
+        System.out.println("verifycontroller");
+        String authNumber = (String) requestBody.get("authNumber");
+        String verifyNumber = (String) requestBody.get("verifyNumber");
+        return coolSmsService.verifyAuthNumber(authNumber, verifyNumber);
     }
 
     //    로그아웃
