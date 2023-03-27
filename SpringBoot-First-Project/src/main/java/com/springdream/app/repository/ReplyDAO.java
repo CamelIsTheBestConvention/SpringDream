@@ -16,7 +16,7 @@ public class ReplyDAO {
 
 
     //    전체조회
-    public List<ReplyDTO> selectAll() { return replyMapper.selectAll(); }
+//    public List<ReplyDTO> selectAll() { return replyMapper.selectAll(Long boardNumber); }
 
     // 회원 댓글 전체 조회
     public List<ReplyDTO> findMemberReplyAll(Long memberNumber) {
@@ -33,9 +33,9 @@ public class ReplyDAO {
         return replyMapper.select(replyNumber);
     }
 
-    //    답글 전체 조회
+    //    해당 게시글에대한 답글 전체 조회
     public List<ReplyDTO> findAll(Long boardNumber){
-        return replyMapper.selectAll();
+        return replyMapper.selectAll(boardNumber);
     }
 
     //    답글 수정

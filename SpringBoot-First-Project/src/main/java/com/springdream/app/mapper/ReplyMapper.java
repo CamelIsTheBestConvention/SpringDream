@@ -21,7 +21,7 @@ public interface ReplyMapper {
     public ReplyDTO select(Long replyNumber);
 
     //    전체조회
-    public List<ReplyDTO> selectAll();
+    public List<ReplyDTO> selectAll(Long boardNumber);
 
     //  댓글 채택
     public void updateAdopt(ReplyDTO replyDTO);

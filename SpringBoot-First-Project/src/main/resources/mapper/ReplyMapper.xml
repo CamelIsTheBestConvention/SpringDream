@@ -3,8 +3,8 @@
 <mapper  namespace="com.springdream.app.mapper.ReplyMapper">
     <!--  댓글 추가  -->
     <insert id="insert">
-        INSERT INTO TBL_DREAM_REPLY(REPLY_NUMBER, REPLY_TITLE, REPLY_CONTENT, BOARD_NUMBER, MEMBER_NUMBER)
-        VALUES(SEQ_DREAM_REPLY.NEXTVAL, #{replyTitle}, #{replyContent}, #{boardNumber}, #{memberNumber})
+        INSERT INTO TBL_DREAM_REPLY(REPLY_NUMBER, REPLY_CONTENT, BOARD_NUMBER, MEMBER_NUMBER)
+        VALUES(SEQ_DREAM_REPLY.NEXTVAL, #{replyContent}, #{boardNumber}, #{memberNumber})
     </insert>
 
     <!--  댓글 수정  -->
@@ -29,7 +29,7 @@
         ON R.REPlY_NUMBER = #{replyNumber} AND R.MEMBER_NUMBER = m.MEMBER_NUMBER
     </select>
 
-    <!--  댓글 전체 조회  -->
+    <!--  해당 게시글의 댓글 전체 조회  -->
     <select id="selectAll" resultType="replyDTO">
         SELECT D2.REPLY_NUMBER, D2.REPLY_TITLE, D2.REPLY_CONTENT, D2.REPLY_UPDATE_DATE, D2.MEMBER_NUMBER, D2.BOARD_NUMBER, m2.MEMBER_ID, m2.MEMBER_NAME, m2.MEMBER_RANK
         FROM
@@ -49,7 +49,7 @@
         ) D2
         JOIN TBL_DREAM_MEMBER m2
         ON D2.MEMBER_NUMBER = m2.MEMBER_NUMBER
-        WHERE R <![CDATA[>]]> 0
+        WHERE R <![CDATA[>]]> 0 AND D2.BOARD_NUMBER = #{boardNumber}
     </select>
 
     <!--  마이페이지 회원 댓글 전체 조회  -->
