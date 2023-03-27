@@ -78,6 +78,7 @@
                         </div>
                     </div>
                 </article>
+
                 <!-- 답글 입력창 -->
                 <div class="comment-field">
                     <div class="comment-write">
@@ -85,20 +86,21 @@
                     </div>
                     <button type="button" class="comment-write-button">작성</button>
                 </div>
+
                 <!-- 답글 리스트 -->
-                <th:block th:each="reply:${boardlist}">
-                    <article class="article" th:object="${reply}">
+                    <div class="reply-wrapper">
+                    <article class="article">
                         <div class="article-header">
-                            <h1 class="article-title" th:text="*{boardTitle}"></h1> <!-- 글 제목 -->
+                            <h1 class="article-title"></h1> <!-- 글 제목 -->
                         </div>
                         <div class="user-profile-area">
                             <img th:src="@{/img/board/user_icon.png}" alt="유저 이미지" class="profile-image">
                             <div class="profile-info">
-                                <span class="user-name" th:text="*{memberName}"></span>   <!-- 작성자 이름 -->
+                                <span class="user-name"></span>   <!-- 작성자 이름 -->
                                 <div class="created-at">
-                                    <span class="time" th:text="*{boardUpdateDate}">22.9.13</span>   <!-- 작성 날짜 -->
+                                    <span class="time">22.9.13</span>   <!-- 작성 날짜 -->
                                     <span class="divider-dot">·</span>
-                                    <span class="views" th:text="*{boardViewcount}"></span>   <!-- 조회수 -->
+                                    <span class="views"></span>   <!-- 조회수 -->
                                     <span class="divider-dot">·</span>
                                     <span class="report">               <!-- 신고 -->
                                         <img th:src="@{/img/board/report.png}" class="report-button" alt="">
@@ -111,11 +113,12 @@
                                 <img th:src="@{/img/board/test1.png}" alt="글 이미지">
                             </div>
                             <div class="article-body">   <!-- 글 내용 -->
-                                <p th:text="*{boardContent}"></p>
+                                <p></p>
                             </div>
                         </div>
                     </article>
-                </th:block>
+                    </div>
+
             </div>
         </div>
     </div>
@@ -125,4 +128,95 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script type="text/javascript" th:src="@{/js/fix/header.js}"></script>
+<script type="text/javascript" th:src="@{/js/board/replyService.js}"></script>
+<script th:inline="javascript">
+
+    let memberNumber = [[${session.memberNumber}]]; // memberNumber session 에서 가져옴
+    console.log(memberNumber);
+
+    // 현재 URL의 쿼리스트링 가져오기
+    var queryString = location.search;
+
+    // URLSearchParams 객체 생성
+    var searchParams = new URLSearchParams(queryString);
+
+    // 매개변수 값 가져오기
+    var boardNumber = searchParams.get('boardNumber');
+
+    // 값 출력
+    console.log(boardNumber);
+    console.log(1, "come");
+    getReplyLists();
+
+
+    <!--    댓글 추가 기능-->
+    let replyRegisterButton = document.querySelector(".comment-write-button");
+    //댓글 등록
+
+    console.log(replyRegisterButton);
+    replyRegisterButton.addEventListener("click", function() {
+        let commentTextarea = document.querySelector('textarea[name="comment-write"]');
+        let replyContent = commentTextarea.value;
+        console.log("댓글내용까진는 들어옴 :" + replyContent);
+        replyService().add({
+            replyContent : replyContent,
+            memberNumber : memberNumber,
+            boardNumber : boardNumber
+        },function () {
+            window.location.reload();
+        })
+        getReplyLists();
+    });
+
+//    댓글 리스트
+    function getReplyLists() {
+        console.log(2,"come");
+        replyService().list(boardNumber,showReplyLists);
+        console.log(5,"come");
+    }
+
+    function showReplyLists(replies) {
+        console.log(3,"come");
+        let text = "";
+        replies.forEach(reply => {
+            text += "<div class='reply-wrapper'>"
+            text += "<article class='article'>";
+            text += "<div class='article-header'>";
+            text += "<h1 class='article-title'></h1>";
+            text += "</div>";
+            text += "<div class='user-profile-area'>";
+            text += "<img th:src='@{/img/board/user_icon.png}' alt='유저 이미지' class='profile-image'>";
+            text += "<div class='profile-info'>";
+            text += "<span class='user-name'>"+ reply.memberName +"</span>";
+            text += "<div class='created-at'>";
+            text += "<span class='time'>"+reply.replyUpdateDate+"</span>";
+            text += "<span class='divider-dot'>·</span>";
+            text += "<span class='views'></span>";
+            text += "<span class='divider-dot'>·</span>";
+            text += "<span class='report'>";
+            text += "<img th:src='@{/img/board/report.png}' class='report-button' alt=''>";
+            text += "</span>";
+            text += "</div>";
+            text += "</div>";
+            text += "</div>";
+            text += "<div class='article-content'>";
+            text += "<div class='article-attachments'>";
+            text += "<img th:src='@{/img/board/test1.png}' alt='글 이미지'>";
+            text += "</div>";
+            text += "<div class='article-body'>";
+            text += "<p>"+reply.replyContent+"</p>";
+            text += "</div>";
+            text += "</div>";
+            text += "</article>";
+            text += "</div>";
+
+        });
+        const replyWrapper = document.querySelector('.reply-wrapper');
+        replyWrapper.innerHTML = text;
+        console.log(4,"come");
+    }
+
+
+
+</script>
 </html>
