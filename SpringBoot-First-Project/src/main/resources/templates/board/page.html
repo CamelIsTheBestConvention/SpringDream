@@ -87,38 +87,58 @@
                     <button type="button" class="comment-write-button">작성</button>
                 </div>
 
-                <!-- 답글 리스트 -->
-                    <div class="reply-wrapper">
-                    <article class="article">
-                        <div class="article-header">
-                            <h1 class="article-title"></h1> <!-- 글 제목 -->
-                        </div>
-                        <div class="user-profile-area">
-                            <img th:src="@{/img/board/user_icon.png}" alt="유저 이미지" class="profile-image">
-                            <div class="profile-info">
-                                <span class="user-name"></span>   <!-- 작성자 이름 -->
-                                <div class="created-at">
-                                    <span class="time">22.9.13</span>   <!-- 작성 날짜 -->
-                                    <span class="divider-dot">·</span>
-                                    <span class="views"></span>   <!-- 조회수 -->
-                                    <span class="divider-dot">·</span>
-                                    <span class="report">               <!-- 신고 -->
-                                        <img th:src="@{/img/board/report.png}" class="report-button" alt="">
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="article-content">
-                            <div class="article-attachments">
-                                <img th:src="@{/img/board/test1.png}" alt="글 이미지">
-                            </div>
-                            <div class="article-body">   <!-- 글 내용 -->
-                                <p></p>
-                            </div>
-                        </div>
-                    </article>
-                    </div>
+<!--                &lt;!&ndash; 답글 리스트 &ndash;&gt;-->
+<!--                <div class="reply-wrapper">-->
+<!--                    <article class="article">-->
+<!--                        <div class="article-header">-->
+<!--                            <h1 class="article-title"></h1> &lt;!&ndash; 글 제목 &ndash;&gt;-->
+<!--                        </div>-->
+<!--                        <div class="user-profile-area">-->
+<!--                            <img th:src="@{/img/board/user_icon.png}" alt="유저 이미지" class="profile-image">-->
+<!--                            <div class="profile-info">-->
+<!--                                <span class="user-name"></span>   &lt;!&ndash; 작성자 이름 &ndash;&gt;-->
+<!--                                <div class="created-at">-->
+<!--                                    <span class="time">22.9.13</span>   &lt;!&ndash; 작성 날짜 &ndash;&gt;-->
+<!--                                    <span class="divider-dot">·</span>-->
+<!--                                    <span class="views"></span>   &lt;!&ndash; 조회수 &ndash;&gt;-->
+<!--                                    <span class="divider-dot">·</span>-->
+<!--                                    <span class="report">               &lt;!&ndash; 신고 &ndash;&gt;-->
+<!--                                        <img th:src="@{/img/board/report.png}" class="report-button" alt="">-->
+<!--                                    </span>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="article-content">-->
+<!--                            <div class="article-attachments">-->
+<!--                                <img th:src="@{/img/board/test1.png}" alt="글 이미지">-->
+<!--                            </div>-->
+<!--                            <div class="article-body">   &lt;!&ndash; 글 내용 &ndash;&gt;-->
+<!--                                <p></p>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </article>-->
+<!--                </div>-->
 
+                <!-- 댓글 리스트-->
+                <div class="reply-wrapper">
+                    <div class="reply-inner-wrapper">
+                        <div class="reply-firstline">
+                            <div class="reply-nickname"></div>
+                            <div class="reply-update-wrapper">
+                                <div class="reply-update">수정하기</div>
+                                <div class="reply-delete">✖</div>
+                            </div>
+                        </div>
+                        <div class="reply-text"></div>
+                        <div class="reply-secondline">
+                            <div class="reply-date-wrapper">
+                                <div class="reply-date"></div>
+                                <div class="reply-report">🚨</div>
+                            </div>
+                            <div class="reply-adopt">👍</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -179,44 +199,72 @@
         console.log(3,"come");
         let text = "";
         replies.forEach(reply => {
-            text += "<div class='reply-wrapper'>"
-            text += "<article class='article'>";
-            text += "<div class='article-header'>";
-            text += "<h1 class='article-title'></h1>";
-            text += "</div>";
-            text += "<div class='user-profile-area'>";
-            text += "<img th:src='@{/img/board/user_icon.png}' alt='유저 이미지' class='profile-image'>";
-            text += "<div class='profile-info'>";
-            text += "<span class='user-name'>"+ reply.memberName +"</span>";
-            text += "<div class='created-at'>";
-            text += "<span class='time'>"+reply.replyUpdateDate+"</span>";
-            text += "<span class='divider-dot'>·</span>";
-            text += "<span class='views'></span>";
-            text += "<span class='divider-dot'>·</span>";
-            text += "<span class='report'>";
-            text += "<img th:src='@{/img/board/report.png}' class='report-button' alt=''>";
-            text += "</span>";
-            text += "</div>";
-            text += "</div>";
-            text += "</div>";
-            text += "<div class='article-content'>";
-            text += "<div class='article-attachments'>";
-            text += "<img th:src='@{/img/board/test1.png}' alt='글 이미지'>";
-            text += "</div>";
-            text += "<div class='article-body'>";
-            text += "<p>"+reply.replyContent+"</p>";
-            text += "</div>";
-            text += "</div>";
-            text += "</article>";
-            text += "</div>";
-
+            text += '<div class="reply-wrapper">';
+            text += '<div class="reply-inner-wrapper">';
+            text += '<div class="reply-firstline">';
+            text += '<div class="reply-nickname">' + reply.memberName + '</div>';
+            text += '<div class="reply-update-wrapper">';
+            text += '<div class="reply-update">수정하기</div>';
+            text += '<div class="reply-delete">✖</div>';
+            text += '</div>';
+            text += '</div>';
+            text += '<div class="reply-text">' + reply.replyContent + '</div>';
+            text += '<div class="reply-secondline">';
+            text += '<div class="reply-date-wrapper">';
+            text += '<div class="reply-date">' + reply.replyUpdateDate + '</div>';
+            text += '<div class="reply-report">🚨</div>';
+            text += '</div>';
+            text += '<div class="reply-adopt">👍</div>';
+            text += '</div>';
+            text +='</div>';
         });
         const replyWrapper = document.querySelector('.reply-wrapper');
-        replyWrapper.innerHTML = text;
+        // replyWrapper.innerHTML = text;
         console.log(4,"come");
     }
 
 
+    // //  에이젝스 리플라이
+    // function showReplyLists(replies) {
+    //     console.log(3,"come");
+    //     let text = "";
+    //     replies.forEach(reply => {
+    //         text += "<div class='reply-wrapper'>"
+    //         text += "<article class='article'>";
+    //         text += "<div class='article-header'>";
+    //         text += "<h1 class='article-title'></h1>";
+    //         text += "</div>";
+    //         text += "<div class='user-profile-area'>";
+    //         text += "<img th:src='@{/img/board/user_icon.png}' alt='유저 이미지' class='profile-image'>";
+    //         text += "<div class='profile-info'>";
+    //         text += "<span class='user-name'>"+ reply.memberName +"</span>";
+    //         text += "<div class='created-at'>";
+    //         text += "<span class='time'>"+reply.replyUpdateDate+"</span>";
+    //         text += "<span class='divider-dot'>·</span>";
+    //         text += "<span class='views'></span>";
+    //         text += "<span class='divider-dot'>·</span>";
+    //         text += "<span class='report'>";
+    //         text += "<img th:src='@{/img/board/report.png}' class='report-button' alt=''>";
+    //         text += "</span>";
+    //         text += "</div>";
+    //         text += "</div>";
+    //         text += "</div>";
+    //         text += "<div class='article-content'>";
+    //         text += "<div class='article-attachments'>";
+    //         text += "<img th:src='@{/img/board/test1.png}' alt='글 이미지'>";
+    //         text += "</div>";
+    //         text += "<div class='article-body'>";
+    //         text += "<p>"+reply.replyContent+"</p>";
+    //         text += "</div>";
+    //         text += "</div>";
+    //         text += "</article>";
+    //         text += "</div>";
+    //
+    //     });
+    //     const replyWrapper = document.querySelector('.reply-wrapper');
+    //     // replyWrapper.innerHTML = text;
+    //     console.log(4,"come");
+    // }
 
 </script>
 </html>
