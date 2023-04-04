@@ -315,7 +315,12 @@ textarea {
     width: 100%;
 }
 
-/* 답글 리스트 */
+.comment-write-button:hover {
+    background-color: #fcba03;
+    cursor: pointer;
+}
+
+    /* 답글 리스트 */
 .comment-list {
     padding-right: 50px;
     padding-left: 30px;
@@ -401,4 +406,88 @@ button img {
     margin-top: 10px;
     font-size: 14px;
     padding-top: 15px
+}
+
+/* 댓글 */
+.reply-wrapper {
+    background-color: #fbfbef;
+}
+
+.reply-inner-wrapper {
+    padding: 1rem;
+    border-top: 2px solid #e6e6e6;
+}
+
+.reply-update-wrapper {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.reply-update {
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.reply-update::after {
+    content: "│";
+    color: #ccc;
+}
+
+.reply-date {
+    color: #a4a4a4;
+    font-size: 0.9rem;
+}
+
+.reply-date::after {
+    content: "│";
+    color: #ccc;
+}
+
+.reply-date-wrapper {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.reply-firstline {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.reply-secondline {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.reply-nickname {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-right: 1rem;
+}
+
+.reply-nickname-wrapper {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.reply-report {
+    color: #fe2e2e;
+    font-weight: 700;
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+.reply-adopt {
+    cursor: pointer;
+}
+
+.reply-delete {
+    cursor: pointer;
+}
+
+.reply-text {
+    width: 100%;
+    word-break:break-all;
+    white-space: normal;
 }
