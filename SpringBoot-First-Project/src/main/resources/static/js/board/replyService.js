@@ -27,7 +27,12 @@ let replyService = function () {
         })
     };
 
-    function remove() {};
+    function remove(replyNumber) {
+        $.ajax({
+            url : "/reply/" + replyNumber,
+            type: "delete"
+        })
+    };
     function modify() {};
 
     return {add : add , list : list , remove : remove , modify : modify};

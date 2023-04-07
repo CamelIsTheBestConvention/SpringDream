@@ -10,7 +10,7 @@
     <!--  댓글 수정  -->
     <update id="update" parameterType="replyDTO">
         UPDATE TBL_DREAM_REPLY
-        SET REPLY_TITLE = #{replyTitle}, REPLY_CONTENT = #{replyContent}, REPLY_UPDATE_DATE = SYSDATE
+        SET REPLY_CONTENT = #{replyContent}, REPLY_UPDATE_DATE = SYSDATE
         WHERE REPLY_NUMBER = #{replyNumber}
     </update>
 

@@ -23,4 +23,9 @@ public class BoardReplyService {
         return replyDAO.findAll(boardNumber);
     }
 
+//    해당 댓글 삭제
+    public void remove(Long replyNumber){
+        replyDAO.remove(replyNumber);
+    }
+
 }

@@ -34,5 +34,12 @@ public class ReplyController {
 
 //    수정
 
+//    삭제
+    @DeleteMapping("/{replyNumber}")
+    public String remove(@PathVariable("replyNumber") Long replyNumber){
+        boardReplyService.remove(replyNumber);
+        return "delete success";
+    }
+
 
 }

@@ -139,6 +139,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -165,7 +166,6 @@
 
     // 값 출력
     console.log(boardNumber);
-    console.log(1, "come");
     getReplyLists();
 
 
@@ -190,81 +190,55 @@
 
 //    댓글 리스트
     function getReplyLists() {
-        console.log(2,"come");
         replyService().list(boardNumber,showReplyLists);
-        console.log(5,"come");
     }
 
     function showReplyLists(replies) {
-        console.log(3,"come");
         let text = "";
         replies.forEach(reply => {
-            text += '<div class="reply-wrapper">';
-            text += '<div class="reply-inner-wrapper">';
-            text += '<div class="reply-firstline">';
-            text += '<div class="reply-nickname">' + reply.memberName + '</div>';
-            text += '<div class="reply-update-wrapper">';
-            text += '<div class="reply-update">수정하기</div>';
-            text += '<div class="reply-delete">✖</div>';
-            text += '</div>';
-            text += '</div>';
-            text += '<div class="reply-text">' + reply.replyContent + '</div>';
-            text += '<div class="reply-secondline">';
-            text += '<div class="reply-date-wrapper">';
-            text += '<div class="reply-date">' + reply.replyUpdateDate + '</div>';
-            text += '<div class="reply-report">🚨</div>';
-            text += '</div>';
-            text += '<div class="reply-adopt">👍</div>';
-            text += '</div>';
-            text +='</div>';
+            // text += "<div class='reply-wrapper'>";
+            text += "<div class='reply-inner-wrapper'>";
+            text += "<div class='reply-firstline'>";
+            text += "<div class='reply-nickname'>" + reply.memberName + "</div>";
+            text += "<div class='reply-update-wrapper' data-reply-number='" + reply.replyNumber + "'>";
+            text += "<div class='reply-update'>수정하기</div>";
+            text += "<a class = 'reply-remove' href='" + reply.replyNumber + "'>";
+            text += "<div class='reply-delete'>✖</div>";
+            text += "</a>";
+            text += "</div>";
+            text += "</div>";
+            text += "<div class='reply-text'>" + reply.replyContent + "</div>";
+            text += "<div class='reply-secondline'>";
+            text += "<div class='reply-date-wrapper'>";
+            text += "<div class='reply-date'>" + reply.replyUpdateDate + "</div>";
+            text += "<div class='reply-report'>🚨</div>";
+            text += "</div>";
+            text += "<div class='reply-adopt'>👍</div>";
+            text += "</div>";
+            text += "</div>";
+            // text += "</div>";
         });
         const replyWrapper = document.querySelector('.reply-wrapper');
-        // replyWrapper.innerHTML = text;
-        console.log(4,"come");
+        replyWrapper.innerHTML = text;
     }
 
 
-    // //  에이젝스 리플라이
-    // function showReplyLists(replies) {
-    //     console.log(3,"come");
-    //     let text = "";
-    //     replies.forEach(reply => {
-    //         text += "<div class='reply-wrapper'>"
-    //         text += "<article class='article'>";
-    //         text += "<div class='article-header'>";
-    //         text += "<h1 class='article-title'></h1>";
-    //         text += "</div>";
-    //         text += "<div class='user-profile-area'>";
-    //         text += "<img th:src='@{/img/board/user_icon.png}' alt='유저 이미지' class='profile-image'>";
-    //         text += "<div class='profile-info'>";
-    //         text += "<span class='user-name'>"+ reply.memberName +"</span>";
-    //         text += "<div class='created-at'>";
-    //         text += "<span class='time'>"+reply.replyUpdateDate+"</span>";
-    //         text += "<span class='divider-dot'>·</span>";
-    //         text += "<span class='views'></span>";
-    //         text += "<span class='divider-dot'>·</span>";
-    //         text += "<span class='report'>";
-    //         text += "<img th:src='@{/img/board/report.png}' class='report-button' alt=''>";
-    //         text += "</span>";
-    //         text += "</div>";
-    //         text += "</div>";
-    //         text += "</div>";
-    //         text += "<div class='article-content'>";
-    //         text += "<div class='article-attachments'>";
-    //         text += "<img th:src='@{/img/board/test1.png}' alt='글 이미지'>";
-    //         text += "</div>";
-    //         text += "<div class='article-body'>";
-    //         text += "<p>"+reply.replyContent+"</p>";
-    //         text += "</div>";
-    //         text += "</div>";
-    //         text += "</article>";
-    //         text += "</div>";
-    //
-    //     });
-    //     const replyWrapper = document.querySelector('.reply-wrapper');
-    //     // replyWrapper.innerHTML = text;
-    //     console.log(4,"come");
-    // }
+//    댓글 삭제
+
+    $("div.reply-wrapper").on("click","a.reply-remove", function (e) {
+        e.preventDefault();
+        let replyNumber = $(this).attr("href");
+        console.log(replyNumber);
+        replyService().remove(replyNumber);
+        getReplyLists();
+    });
+
+//    댓글 수정
+
+
+
+
+
 
 </script>
 </html>
